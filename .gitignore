@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/*.xml
+
+**/.idea/workspace.xml
+**/.idea/misc.xml
+**/.idea/modules.xml
+**/.idea/nbhMapKnockout.iml
+**/.idea/vcs.xml
+node_modules
+.tmp
