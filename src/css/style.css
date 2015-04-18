@@ -1,0 +1,167 @@
+@charset "UTF-8";
+* {box-sizing:border-box;}
+body { background-color: #CCC; font-family: sans-serif; font-size: 14px; line-height: 1.6em; margin: 0; padding: 0; }
+input { font-size: 20px; padding: 10px; border: 1px solid #CCC; display: block; margin: 20px 0; }
+
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; cursor: default; overflow: auto; -webkit-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); -moz-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-no-suggestion { padding: 2px 5px;}
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: bold; color: #000; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { font-weight: bold; font-size: 16px; color: #000; display: block; border-bottom: 1px solid #000; }
+
+img, object, embed, video {
+	max-width: 100%;
+  }
+
+li {
+  cursor:pointer;
+  padding: 10px 10px 0 10px;
+  border-bottom: 1px dotted black;
+  opacity: 0.9;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition:    all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  }
+
+li:hover {
+  background: #FDF6E3;
+  opacity: 1;
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  }
+/* IE 6 does not support max-width so default to width 100% */
+.ie6 img {
+	width:100%;
+  }
+
+
+
+.fluid {
+	clear: both;
+	margin-left: 0;
+	width: 100%;
+	float: left;
+	display: block;
+}
+
+.fluidList {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.title {
+	margin-top: 1%;
+    margin-bottom: 1%;
+  }
+
+.foursquare-container {
+    padding: 10px;
+    margin-right:300px;
+    background-color: rgba(255,255,255,0.7);
+  }
+
+
+
+#mapDiv {
+
+	height:300px;
+	width: 95%;
+	margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+	padding:0px;
+	text-align:center;
+
+  }
+
+
+#panel {
+
+  margin-top: 0%;
+  margin-bottom: 5%;
+  text-align: center;
+  z-index: 5;
+
+  }
+@-webkit-keyframes myAnimation {
+
+  from {opacity:0;}
+  to {opacity:1;}
+
+}
+
+@keyframes myAnimation {
+
+  from {opacity:0;}
+  to {opacity:1;}
+}
+
+
+/* Mobile Layout: 480px and below. */
+
+.gridContainer {
+	margin-left: auto;
+	margin-right: auto;
+	width: 86.45%;
+	padding-left: 2.275%;
+	padding-right: 2.275%;
+	clear: none;
+	float: none;
+  }
+
+
+.zeroMargin_mobile {
+    margin-left: 0;
+  }
+.hide_mobile {
+    display: none;
+  }
+
+/* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
+
+@media only screen and (min-width: 481px) {
+
+.gridContainer {
+	width: 90.675%;
+	padding-left: 1.1625%;
+	padding-right: 1.1625%;
+	clear: none;
+	float: none;
+	margin-left: auto;
+  }
+
+.zeroMargin_tablet {
+    margin-left: 0;
+  }
+.hide_tablet {
+    display: none;
+  }
+}
+
+/* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
+
+@media only screen and (min-width: 769px) {
+
+.gridContainer {
+	width: 88.5%;
+	max-width: 1232px;
+	padding-left: 0.75%;
+	padding-right: 0.75%;
+	margin: auto;
+	clear: none;
+	float: none;
+  }
+
+.zeroMargin_desktop {
+    margin-left: 0;
+  }
+.hide_desktop {
+    display: none;
+  }
+}
