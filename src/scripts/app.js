@@ -78,7 +78,7 @@
        getDataFoursquare(function (placesData) {
         var places=[];
          places=placesData;
-       //ko.applyBindings(new ViewModel(placesData));
+         ko.applyBindings(new ViewModel(placesData));
          ViewModel(placesData);
         octopus.setFoursquareData(places);
          Map(placesData);
@@ -99,8 +99,7 @@
     var self= this;
 
     this.placesList= ko.observableArray([]);
-
-    this.placesList=places;
+     this.placesList=places;
     //console.log(this.placesList);//Funciona bien
     Map(this.placesList);
 
@@ -113,7 +112,7 @@
     //console.log(placesList);//Funciona bien
 
      var list=octopus.getFoursquareData();
-     console.log(list);//Funciona bien
+     console.log(list);//Recibo los datos de octopus y funciona bien
 
 
 
@@ -122,6 +121,6 @@
 
     octopus.init();
 
-    ko.applyBindings(new ViewModel());
+    //ko.applyBindings(new ViewModel());
 
  }());

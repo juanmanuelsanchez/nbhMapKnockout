@@ -1,9 +1,4 @@
-/**
- * Created by juanmanuelsanchez on 20/4/15.
- */
-/**
- * Created by juanmanuelsanchez on 18/4/15.
- */
+
 (function() {
 
   var Model = {
@@ -22,10 +17,30 @@
 
   };
 
+  var octopus= {
+
+    init: function() {
+
+    },
+
+    setFoursquareData: function(places){
+
+      Model["foursquareData"]=places;
+      //initialData.foursquareData.push(places);
+
+    },
+
+    getFoursquareData: function() {
+
+      return Model.foursquareData;
+    }
+
+  };
+
   var Place= function(data) {
 
-    this.name= ko.observable(data.name);//Revisar parámetros
-    this.location=ko.observable(data.location);//Revisar parámetros
+    this.name= ko.observable(data.venue.name);//Revisar parámetros
+    this.location= ko.observable(data.venue.location.address);//Revisar parámetros
 
 
   };
@@ -39,8 +54,6 @@
     self.currentCity=Model.cities[0];
     console.log(self.currentCity);
     self.places= ko.observableArray([]);
-    var $foursquareElem = $('#places-list');
-    $foursquareElem.text("");
     var clientID = 'WMGXUPU15HUVPMTMGK3WZPHVGBXKPXWMUQ5WW3DMRSOZUIH5';
     var clientSecret = 'RFUOHDP441JSHFBS1AS0KLAGRVVRGNL2VACN0RHIJJNC5AT2';
     var foursquareUrl = 'https://api.foursquare.com/v2/venues/explore?near=' + self.currentCity + '&&client_id=' +
@@ -48,26 +61,54 @@
 
 
 
-     $.getJSON(foursquareUrl, function (data) {
+    function getDataFoursquare(callback) {
 
-      var places = [];
-       places = data.response.groups[0].items;
-      //console.log(places);
-       self.places=places;
 
-       //console.log(self.places);
+      $.getJSON(foursquareUrl, function (data) {
 
-    }).error(function (e) {
+        var places = [];
+        places = data.response.groups[0].items;
+        //console.log(places);
 
-      $foursquareElem.text("Sorry, Foursquare articles could not be loaded");
+        places.forEach(function (placeItem) {
 
+          self.places.push(new Place(placeItem));
+          // Model.foursquareData.push(placeItem);
+
+
+        });
+
+        callback(places);
+
+
+      }).error(function (e) {
+
+        $foursquareElem.text("Sorry, Foursquare articles could not be loaded");
+
+      });
+
+      return false;
+
+    }
+
+    getDataFoursquare(function (placesData) {
+
+      octopus.setFoursquareData(placesData);
+      Map();
     });
-
-    console.log(self.places());
-
 
 
   };
+
+
+  var Map = function () {
+
+    var list=octopus.getFoursquareData();
+    console.log(list);//Recibo los datos de octopus y funciona bien?
+
+
+  };
+
 
   ko.applyBindings(new PlacesViewModel());
 
