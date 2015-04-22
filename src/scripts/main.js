@@ -39,8 +39,27 @@
 
   var Place= function(data) {
 
-    this.name= ko.observable(data.venue.name);//Revisar parámetros
-    this.location= ko.observable(data.venue.location.address);//Revisar parámetros
+
+    var self=this;
+    self.name= ko.observable(data.venue.name);
+    self.address= ko.observable(data.venue.location.address);
+    self.city=ko.observable(data.venue.location.city);
+    self.country=ko.observable(data.venue.location.country);
+
+    self.location=ko.pureComputed(function() {//It' better than ko.computed for calculate and return a value
+      return self.name() + ", " + self.address() + ", " + self.city() + ", " + self.country();
+    });
+
+    /*  this.name= ko.observable(data.venue.name);
+     *  this.address= ko.observable(data.venue.location.address);
+     *  this.city=ko.observable(data.venue.location.city);
+     *  this.country=ko.observable(data.venue.location.country);
+     *
+     *  this.location=ko.computed(function() {
+     *  return this.name() + ", " + this.address() + ", " + this.city() + ", " + this.country();
+     *  }, this); //WITH SELF= THIS, YOU DON'T HAVE TO ADD "THIS" AS SECOND PARAMETER TO TRACK THE OBJECT
+     *          //YOU'RE REFERING TO
+     */
 
 
   };
@@ -53,6 +72,8 @@
     self.currentCity=ko.observableArray([]);
     self.currentCity=Model.cities[0];
     console.log(self.currentCity);
+    var $foursquareElem = $('#places-list');
+    //$foursquareElem.text("");
     self.places= ko.observableArray([]);
     var clientID = 'WMGXUPU15HUVPMTMGK3WZPHVGBXKPXWMUQ5WW3DMRSOZUIH5';
     var clientSecret = 'RFUOHDP441JSHFBS1AS0KLAGRVVRGNL2VACN0RHIJJNC5AT2';
@@ -70,13 +91,13 @@
         places = data.response.groups[0].items;
         //console.log(places);
 
-        places.forEach(function (placeItem) {
+        /*places.forEach(function (placeItem) {
 
           self.places.push(new Place(placeItem));
           // Model.foursquareData.push(placeItem);
 
 
-        });
+        });*/
 
         callback(places);
 
@@ -93,7 +114,17 @@
 
     getDataFoursquare(function (placesData) {
 
-      octopus.setFoursquareData(placesData);
+      var placesList= placesData;
+      placesList.splice(1,1);//OK
+      console.log(placesList);
+
+     placesList.forEach(function (placeItem) {
+
+       self.places.push(new Place(placeItem));
+
+      });
+
+      octopus.setFoursquareData(placesData);//The placesList splice method applies here too
       Map();
     });
 
@@ -104,8 +135,7 @@
   var Map = function () {
 
     var list=octopus.getFoursquareData();
-    console.log(list);//Recibo los datos de octopus y funciona bien?
-
+    console.log(list);//OK
 
   };
 
