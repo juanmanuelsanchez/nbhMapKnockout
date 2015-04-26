@@ -145,18 +145,8 @@
 
       }
 
-      /*for(i; i<length2; i++){
 
-        var location=filteredList[i];
-        var locationName= location.venue.name;
-        if(locationName === regEx1){
-
-          console.log(locationName);
-        }
-
-      }*/
-
-
+      //Transform the Foursquare API object into writable object
       for(i; i<filteredList.length; i++) {
 
         var placeItem= filteredList[i];
@@ -183,7 +173,7 @@
         var locationItemName=locationItem.name;
         var newName;
 
-        if(locationItemName==="Kuma"){
+       if(locationItemName==="Kuma"){
           //console.log(" Kuma Eureka!");
           newName=locationItemName.replace("Kuma","KUMA");
           locationItem.name=newName;
