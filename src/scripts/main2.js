@@ -183,13 +183,26 @@
         var locationItemName=locationItem.name;
         var newName;
 
-        if(locationItemName==="Kuma"){
-
-          console.log("Eureka!");
-          //locationItemName.replace("KUMA");
+       if(locationItemName==="Kuma"){
+          //console.log(" Kuma Eureka!");
           newName=locationItemName.replace("Kuma","KUMA");
-          //locationItemName=newName;
           locationItem.name=newName;
+        }else if(locationItemName==="Mao Restaurante"){
+          //console.log("Mao Eureka!");
+          newName=locationItemName.replace("Mao Restaurante","Mao");
+          locationItem.name= newName;
+        }else if(locationItemName==="SUMO Poza"){
+          //console.log("SUMO Poza Eureka!");
+          newName=locationItemName.replace("SUMO Poza","SUMO Pozas");
+          locationItem.name= newName;
+        }else if(locationItemName==="Sakura"){
+          //console.log("Sakura Eureka!");
+          newName=locationItemName.replace("Sakura","Restaurante Sakura");
+          locationItem.name= newName;
+        }else if(locationItemName==="Wasabi Bilbao Restaurante Japones"){
+          //console.log("Wasabi Bilbao Restaurante Japones Eureka!");
+          newName=locationItemName.replace("Wasabi Bilbao Restaurante Japones","Restaurante Wasabi Bilbao");
+          locationItem.name= newName;
         }
       }
 
