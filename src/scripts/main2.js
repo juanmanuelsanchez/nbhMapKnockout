@@ -173,11 +173,40 @@
         var locationItemName=locationItem.name;
         var newName;
 
+<<<<<<< HEAD
         if(locationItemName==="Kuma"){
 
           console.log("Eureka!");
           newName=locationItemName.replace("Kuma","KUMA");//You can replace here the name to fit marker's name
+||||||| merged common ancestors
+        if(locationItemName==="Kuma"){
+
+          console.log("Eureka!");
+          //locationItemName.replace("KUMA");
+          newName=locationItemName.replace("Kuma","KUMA");
+          //locationItemName=newName;
+=======
+       if(locationItemName==="Kuma"){
+          //console.log(" Kuma Eureka!");
+          newName=locationItemName.replace("Kuma","KUMA");
+>>>>>>> origin/master
           locationItem.name=newName;
+        }else if(locationItemName==="Mao Restaurante"){
+          //console.log("Mao Eureka!");
+          newName=locationItemName.replace("Mao Restaurante","Mao");
+          locationItem.name= newName;
+        }else if(locationItemName==="SUMO Poza"){
+          //console.log("SUMO Poza Eureka!");
+          newName=locationItemName.replace("SUMO Poza","SUMO Pozas");
+          locationItem.name= newName;
+        }else if(locationItemName==="Sakura"){
+          //console.log("Sakura Eureka!");
+          newName=locationItemName.replace("Sakura","Restaurante Sakura");
+          locationItem.name= newName;
+        }else if(locationItemName==="Wasabi Bilbao Restaurante Japones"){
+          //console.log("Wasabi Bilbao Restaurante Japones Eureka!");
+          newName=locationItemName.replace("Wasabi Bilbao Restaurante Japones","Restaurante Wasabi Bilbao");
+          locationItem.name= newName;
         }
       }
 
