@@ -145,18 +145,8 @@
 
       }
 
-      /*for(i; i<length2; i++){
 
-        var location=filteredList[i];
-        var locationName= location.venue.name;
-        if(locationName === regEx1){
-
-          console.log(locationName);
-        }
-
-      }*/
-
-
+      //Transform the Foursquare API object into writable object
       for(i; i<filteredList.length; i++) {
 
         var placeItem= filteredList[i];
@@ -186,9 +176,7 @@
         if(locationItemName==="Kuma"){
 
           console.log("Eureka!");
-          //locationItemName.replace("KUMA");
-          newName=locationItemName.replace("Kuma","KUMA");
-          //locationItemName=newName;
+          newName=locationItemName.replace("Kuma","KUMA");//You can replace here the name to fit marker's name
           locationItem.name=newName;
         }
       }
