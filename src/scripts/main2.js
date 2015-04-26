@@ -173,23 +173,9 @@
         var locationItemName=locationItem.name;
         var newName;
 
-<<<<<<< HEAD
-        if(locationItemName==="Kuma"){
-
-          console.log("Eureka!");
-          newName=locationItemName.replace("Kuma","KUMA");//You can replace here the name to fit marker's name
-||||||| merged common ancestors
-        if(locationItemName==="Kuma"){
-
-          console.log("Eureka!");
-          //locationItemName.replace("KUMA");
-          newName=locationItemName.replace("Kuma","KUMA");
-          //locationItemName=newName;
-=======
        if(locationItemName==="Kuma"){
           //console.log(" Kuma Eureka!");
           newName=locationItemName.replace("Kuma","KUMA");
->>>>>>> origin/master
           locationItem.name=newName;
         }else if(locationItemName==="Mao Restaurante"){
           //console.log("Mao Eureka!");
