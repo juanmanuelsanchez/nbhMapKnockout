@@ -123,13 +123,7 @@
       var h=0;
       var length = placesList.length;
       var filteredList=[];//Foursquare filtered data
-      var length2= filteredList.length;
       var filteredNames=[];//Foursquare filtered place's modified names to fit Google Map's marker's names
-      var regEx1=/Kuma/g;
-      var regEx2=/Mao Restaurante/g;
-      var regEx4=/SUMO Poza/g;
-      var regEx5=/Sakura/g;
-      var regEx6=/Wasabi Bilbao Restaurante Japones/g;
 
 
 
@@ -166,7 +160,7 @@
         filteredNames.push(location);
 
       }
-
+      //Modify the name property to fit Google Map's marker's title property
       for (h; h<filteredNames.length; h++) {
 
         var locationItem= filteredNames[h];
