@@ -7,10 +7,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>nbhMap</title>
+  <title>nbhMapKnockout</title>
   <link href="css/boilerplate.css" rel="stylesheet" type="text/css">
   <link href="css/style.css" rel="stylesheet" type="text/css">
-  <!--<script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>-->
+  <<script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
 
   <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -26,19 +26,20 @@
   </div>
   <div class="foursquare-container fluid">
     <h3 id="foursquare-header" class="title fluid">Foursquare recommended places (populate with markers & click to choose!):</h3>
-    <ul id="places-list" class="fluidList"></ul>
+    <ul id="places-list" class="fluidList" data-bind="foreach: places">
+      <li id="list-item" class="fluid" data-bind="text: name"></li>
+    </ul>
   </div>
   <div id="mapDiv" class="fluid"></div>
   <div id="panel">
     <button id="hide">Hide markers</button>
     <button id="show">Populate & Choose</button>
-
   </div>
 </div>
 
 <script src="libs/jquery.min.js"></script>
 <script src="libs/jquery.autocomplete.min.js"></script>
 <script src="libs/knockout.js"></script>
-<script src="scripts/app.js"></script>
+<script src="scripts/main.js"></script>
 </body>
 </html>
