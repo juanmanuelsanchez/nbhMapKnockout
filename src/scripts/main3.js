@@ -101,8 +101,32 @@
     self.city = ko.observable(data.city);
     self.country = ko.observable(data.country);
     self.location = ko.observable(data.location);
+    self.rating= ko.observable(data.rating);
+
+    self.listView = ko.pureComputed(function () {//It's better than ko.computed for calculate and return a value
+     return self.name() + "    " + self.rating();
+     });
+
+
+    console.log(self.rating());
+
 
     octopus.setPinPosterLocations(self.location());
+    var locationsList= octopus.getPinPosterLocations();
+    var locations= [];
+    locations.push(self.location());
+    var markers= octopus.getMarkers();
+    var infos= octopus.getInfoWindows();
+
+    var showButton= document.getElementById("show");
+    var hideButton= document.getElementById("hide");
+    var placesList= document.getElementById("places-list");
+
+    showButton.style.display="none";
+
+
+    //console.log(locationsList);
+
     this.setCurrentPlace = function (clickedListItem) {
       var j = 0;
       var i = 0;
@@ -110,10 +134,10 @@
       var infoWindowsList = octopus.getInfoWindows();
       var markersLength = markersList.length;
       var infoWindowsLength = infoWindowsList.length;
-      console.log(clickedListItem.name());
-      console.log(clickedListItem.address());
-      console.log(markersList);
-      console.log(infoWindowsList);
+      //console.log(clickedListItem.name());
+      //console.log(clickedListItem.address());
+      //console.log(markersList);
+      //console.log(infoWindowsList);
 
       for (i, j; i < markersLength, j < infoWindowsLength; i++, j++) {
 
@@ -135,18 +159,6 @@
 
     };
 
-    var locations= [];
-    var markers= octopus.getMarkers();
-
-
-    var infos= octopus.getInfoWindows();
-
-    var showButton= document.getElementById("show");
-    var hideButton= document.getElementById("hide");
-    locations.push(self.location());
-    var locationsList= octopus.getPinPosterLocations();
-    console.log(locationsList);
-
 
     $('#autocomplete').devbridgeAutocomplete({
 
@@ -154,23 +166,29 @@
       minChars: 1,
       onSearchComplete: function (locationsList, suggestions) {
 
+        placesList.style.display="none";
+        placesList.style.webkitAnimationName='fadeOut';
+        placesList.style.webkitAnimationDuration='1s';
+        showButton.style.display="inline";
+        showButton.style.webkitAnimationName='fadeIn';
+        showButton.style.webkitAnimationDuration='1s';
 
         var listSuggestions=[];
-
-         for(suggestion in suggestions) {
+        for(suggestion in suggestions) {
 
          var location= suggestions[suggestion].value;
          listSuggestions.push(location);
+
          }
          clearMarkers();
-        pinPoster(listSuggestions);
+         pinPoster(listSuggestions);
 
       },
 
       onSelect: function (suggestion) {
 
         var locations= octopus.getPinPosterLocations();
-        console.log(locations);
+        //console.log(locations);
 
         var newList=[];
         var newLocation=suggestion.value;
@@ -284,6 +302,13 @@
 
     function showMarkers() {
 
+      placesList.style.display="block";
+      placesList.style.webkitAnimationName='fadeIn';
+      placesList.style.webkitAnimationDuration='1s';
+      showButton.style.display="none";
+      showButton.style.webkitAnimationName='fadeOut';
+      showButton.style.webkitAnimationDuration='1s';
+
       setAllMap(map);
 
     }
@@ -291,6 +316,15 @@
     function clearMarkers() {
 
       setAllMap(null);
+
+      if(showButton.style.display=="none") {
+
+        showButton.style.display="inline";
+        showButton.style.webkitAnimationName='fadeIn';
+        showButton.style.webkitAnimationDuration='0.8s';
+
+
+      }
 
     }
 
@@ -360,6 +394,7 @@
     getDataFoursquare(function (placesData) {
 
       var placesList = placesData;//All the Foursquare data
+      console.log(placesList);
       var j = 0;
       var i = 0;
       var h = 0;
@@ -372,7 +407,7 @@
 
         var place = placesList[j];
         var name = place.venue.name;
-        if (name != "Miu Japonés" && name != "Miu" && name != "Shibui Bilbo" && name != "Wok Chitau Nauo" && name != "Restaurante Xikelai Wok") {
+        if (name != "Miu Japonés" && name != "Miu" && name != "Shibui Bilbo" && name != "Wok Chitau Nauo" && name != "Restaurante Xikelai Wok" && name !="SUMO Ledesma" && name !="SUMO") {
 
           filteredList.push(place);
           //filteredList.push(name);
@@ -389,6 +424,7 @@
         var locationAddress = placeItem.venue.location.address;
         var locationCity = placeItem.venue.location.city;
         var locationCountry = placeItem.venue.location.country;
+        var locationRating= placeItem.venue.rating;
 
         var location = {
 
@@ -396,7 +432,8 @@
           address: locationAddress,
           city: locationCity,
           country: locationCountry,
-          location: locationName + ', ' + locationAddress + ', ' + locationCity + ', ' + locationCountry
+          location: locationName + ', ' + locationAddress + ', ' + locationCity + ', ' + locationCountry,
+          rating: locationRating
         };
 
         filteredNames.push(location);
@@ -429,10 +466,6 @@
           //console.log("Wasabi Bilbao Restaurante Japones Eureka!");
           newName = locationItemName.replace("Wasabi Bilbao Restaurante Japones", "Restaurante Wasabi Bilbao");
           locationItem.name = newName;
-        } else if (locationItemName === "SUMO Ledesma") {
-          //console.log("SUMO Ledesma Eureka!");
-          newName = locationItemName.replace("SUMO Ledesma", "SUMO");
-          locationItem.name = newName;
         }
       }
 
@@ -446,8 +479,8 @@
       octopus.setFilteredPlaces(filteredList);
       octopus.setFilteredNames(filteredNames);
       // console.log(placesList);
-      console.log(filteredList);
-      console.log(filteredNames);
+      //console.log(filteredList);
+      //console.log(filteredNames);
 
 
     });
