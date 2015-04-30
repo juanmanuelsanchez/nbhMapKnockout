@@ -89,18 +89,31 @@ li:hover {
   z-index: 5;
 
   }
-@-webkit-keyframes myAnimation {
+@-webkit-keyframes fadeIn {
 
   from {opacity:0;}
   to {opacity:1;}
 
 }
 
-@keyframes myAnimation {
+@keyframes fadeIn {
 
   from {opacity:0;}
   to {opacity:1;}
 }
+
+@keyframes fadeOut {
+
+  from {opacity:1;}
+  to {opacity:0;}
+
+}
+
+@-webkit-keyframes fadeOut {
+
+   from {opacity:1;}
+   to {opacity:0;}
+ }
 
 
 /* Mobile Layout: 480px and below. */
