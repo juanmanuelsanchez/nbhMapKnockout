@@ -164,11 +164,11 @@ module.exports = function(grunt) {
 
         // Execute a function to dynamically create the name of the destination file
         // from the variable names above. This is equivalent of an object of the
-        // following structure, which will minify the "dist/scripts/main.js" file,
+        // following structure, which will minify the "dist/scripts/app.js" file,
         // storing the result in "dist/scripts/main.min.js", ready for use in our
         // HTML page:
         // {
-        //     "dist/scripts/main.min.js": "dist/scripts/main.js"
+        //     "dist/scripts/main.min.js": "dist/scripts/app.js"
         // }
         files: (function() {
           var files = {};
