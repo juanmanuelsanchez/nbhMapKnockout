@@ -280,7 +280,8 @@
     //console.log(locationsList);
 
     /**
-     * Sets the scope to a clickedListItem through the data-bind on 'li' items of the DOM
+     * Sets the scope to a clickedListItem through the data-bind on 'li' items of the DOM, animates
+     * the related Google Maps marker
      *
      * @method setCurrentPlace
      * @param clickedListItem {Object} The clicked list item from the DOM
@@ -318,12 +319,44 @@
 
     };
 
+    /**
+     * Creates an autocomplete functionality on the search bar to filter the rendered places.
+     * Credits: Ajax Autocomplete for jQuery, version 1.2.18, (c) 2014 Tomas Kirda.
+     *
+     * @function setCurrentPlace
+     */
 
     $(inputBox).devbridgeAutocomplete({
 
+      /**
+       * Holds locations which are rendered on Google Maps API to make string matching suggestions
+       *
+       * @property lookup
+       * @type Array
+       */
+
       lookup: locationsList,
+
+      /**
+       * Denotes the number of characters to define the string matching
+       *
+       * @property minChars
+       * @type Number
+       */
+
       minChars: 1,
-      onSearchComplete: function (locationsList, suggestions) {
+
+      /**
+       * Suggest the rendered locations on the search bar
+       *
+       * @property onSearchComplete
+       * @type Function
+       * @param locationsList {Array} the locations rendered on Google Map
+       * @param suggestions {Array} the locations suggested by the autocomplete functionality
+       * of the search bar
+       */
+
+      onSearchComplete: function(locationsList, suggestions) {
 
         placesList.style.display="none";
         placesList.style.webkitAnimationName='fadeOut';
@@ -344,6 +377,15 @@
 
       },
 
+      /**
+       * Filters the selected location on the search bar and renders it on the map
+       *
+       * @property onSelect
+       * @type Function
+       * @param suggestion {Array} the location selected on the search bar
+       *
+       */
+
       onSelect: function (suggestion) {
 
         var newList=[];
@@ -354,11 +396,25 @@
         pinPoster(newList);
         foursquareHeader.innerHTML="Foursquare recommended places(hide and/or populate with markers & click to choose!)"
       },
+
+      /**
+       * Sets string mismatches communication on the search bar
+       *
+       * @property showNoSuggestionNotice
+       * @type Boolean
+       */
+
       showNoSuggestionNotice: true,
+
+      /**
+       * Communicates string mismatches communication on the search bar
+       *
+       * @property showNoSuggestionNotice
+       * @type Boolean
+       */
       noSuggestionNotice: 'Sorry, no matching results'
 
     });
-
 
     function createMapMarker(placeData) {
 
