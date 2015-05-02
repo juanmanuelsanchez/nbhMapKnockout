@@ -116,7 +116,7 @@ module.exports = function(grunt) {
 
     // Configure Jasmine to run together with Istanbul to ensure unit tests pass and to
     // generate a code coverage report which will be placed in the "dist/report" output
-    // folder for review. We saw this Jasmine task first in Listing 3-13.
+    // folder for review.
     jasmine: {
       coverage: {
         src: scriptFiles,
@@ -167,9 +167,9 @@ module.exports = function(grunt) {
         // following structure, which will minify the "dist/scripts/app.js" file,
         // storing the result in "dist/scripts/main.min.js", ready for use in our
         // HTML page:
-        // {
-        //     "dist/scripts/main.min.js": "dist/scripts/app.js"
-        // }
+         //{
+          //  "dist/scripts/main.min.js": "dist/scripts/app.js"
+         //}
         files: (function() {
           var files = {};
 
