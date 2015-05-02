@@ -77,7 +77,7 @@
 
   var octopus = {
     /**
-     * Sets current city to search Foursquare recommendations
+     * Sets FoursquareData
      *
      * @method setFoursquareData
      * @param {object} Stores the recommended places taken from Foursquare API
