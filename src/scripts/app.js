@@ -77,10 +77,11 @@
 
   var octopus = {
     /**
-     * Sets FoursquareData
+     * Stores the recommended places taken from Foursquare API
      *
-     * @method setFoursquareData
-     * @param {object} Stores the recommended places taken from Foursquare API
+     * @property setFoursquareData
+     * @type Function
+     * @param places {Object} The places recommended by Foursquare
      */
     setFoursquareData: function (places) {
 
@@ -90,10 +91,10 @@
     },
 
     /**
-     * Gets current city value to search Foursquare recommendations
+     * Retrieves the recommended places taken from Foursquare API
      *
-     * @method getFoursquareData
-     * @param {object} Retrieves the recommended places taken from Foursquare API
+     * @property getFoursquareData
+     * @type Function
      */
 
     getFoursquareData: function () {
