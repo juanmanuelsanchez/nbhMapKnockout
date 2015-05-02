@@ -102,48 +102,128 @@
       return Model.foursquareData;
     },
 
+    /**
+     * Stores filtered recommended places taken from Foursquare API
+     *
+     * @property setFilteredPlaces
+     * @type Function
+     * @param place {Object} The filtered places recommended by Foursquare
+     */
+
     setFilteredPlaces: function (place) {
 
       Model["filteredPlaces"] = place;
     },
+
+    /**
+     * Retrieves filtered recommended places taken from Foursquare API
+     *
+     * @property getFilteredPlaces
+     * @type Function
+     */
 
     getFilteredPlaces: function () {
 
       return Model.filteredPlaces;
     },
 
+    /**
+     * Stores filtered recommended places taken from Foursquare API to match Google Maps markers
+     * and infoWindows
+     *
+     * @property setFilteredNames
+     * @type Function
+     * @param name {Object} The filtered place recommended by Foursquare to match markers and infoWindows
+     */
+
     setFilteredNames: function (name) {
 
       Model["filteredNames"] = name;
     },
 
+    /**
+     * Retrieves filtered recommended places taken from Foursquare API to match Google Maps markers
+     * and infoWindows
+     *
+     * @property getFilteredNames
+     * @type Function
+     */
+
     getFilteredNames: function () {
 
       return Model.filteredNames;
     },
+
+    /**
+     * Stores markers from Google Maps API
+     *
+     * @property setMarkers
+     * @type Function
+     * @param marker {Object} The markers from Google Maps API
+     */
+
     setMarkers: function (marker) {
 
       Model.markers.push(marker);
     },
 
+    /**
+     * Retrieves markers from Google Maps API
+     *
+     * @property getMarkers
+     * @type Function
+     */
+
     getMarkers: function () {
 
       return Model.markers;
     },
+
+    /**
+     * Stores infoWindows from Google Maps API
+     *
+     * @property setInfoWindows
+     * @type Function
+     * @param infoWindow {Object} The infoWindows from Google Maps API
+     */
+
     setInfoWindows: function (infoWindow) {
 
       Model.infoWindows.push(infoWindow);
     },
+
+    /**
+     * Retrieves infoWindows from Google Maps API
+     *
+     * @property getInfoWindows
+     * @type Function
+     */
 
     getInfoWindows: function () {
 
       return Model.infoWindows;
     },
 
+    /**
+     * Stores locations which are going to be rendered on Google Maps API
+     *
+     * @property setPinPosterLocations
+     * @type Function
+     * @param location {Object} The filtered place recommended by Foursquare that matchs markers and infoWindows
+     * which is going to be rendered on Google Maps
+     */
+
     setPinPosterLocations: function (location) {
 
       Model.pinPosterLocations.push(location);
     },
+
+    /**
+     * Retrieves locations which are going to be rendered on Google Maps API
+     *
+     * @property getPinPosterLocations
+     * @type Function
+     */
 
     getPinPosterLocations: function () {
 
@@ -153,6 +233,15 @@
   };
 
   //Place object related to the HTML View
+
+  /**
+   * A "class" defining recommended restaurants
+   *
+   * @class Place
+   * @constructor
+   * @param data {Object} The filtered place recommended by Foursquare that matches markers and infoWindows
+   * which is going to be rendered on Google Maps
+   */
   var Place = function (data) {
 
 
@@ -189,6 +278,13 @@
 
 
     //console.log(locationsList);
+
+    /**
+     * Sets the scope to a clickedListItem through the data-bind on 'li' items of the DOM
+     *
+     * @method setCurrentPlace
+     * @param clickedListItem {Object} The clicked list item from the DOM
+     */
 
     this.setCurrentPlace = function (clickedListItem) {
       var j = 0;
@@ -448,7 +544,7 @@
 
     }
 
-    //Callback function, filter data, store on Model
+    //Callback function, filter data, stores it on Model
     getDataFoursquare(function (placesData) {
 
       var placesList = placesData;//All the Foursquare data
