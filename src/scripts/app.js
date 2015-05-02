@@ -1,54 +1,97 @@
-
-
+/*jshint devel:true, unused:false*/
+/*globals Model, octopus*/
 (function () {
-  /**
-   * Stores raw and filtered data from Foursquare API
-   *
-   * @property {null} currentCity
-   * @property {null} currentPlace
-   * @property {array} cities
-   * @property {array} foursquareData
-   * @property {array} filteredPlaces
-   * @property {array} filteredNames
-   * @property {array} pinPosterLocations
-   * @property {array} markers
-   * @property {array} infoWindows
-   */
+  
+   
   var Model = {
-
+  
+  /**
+   * Holds current city to search Foursquare recommendations
+   *
+   * @property currentCity
+   * @type String
+   * @default null
+   */
     currentCity: null,
-    currentPlace: null,
+
+  /**
+   * Holds the value to set the current city
+   *
+   * @property cities
+   * @type Array
+   * @default ["Bilbao"]
+   */
     cities: ["Bilbao"],
-    foursquareData: [],//All Foursquare data
-    filteredPlaces: [],//Foursquare filtered data
-    filteredNames: [],//Foursquare filtered place's modified names to fit Google Map's marker's names
+
+    /**
+    * Holds all recommendations from Foursquare
+    *
+    * @property filteredData
+    * @type Array
+    */
+    foursquareData: [],
+
+    /**
+    * Holds filtered recommendations from Foursquare to properly work with Google Maps API
+    *
+    * @property filteredPlaces
+    * @type Array
+    */
+    filteredPlaces: [],
+
+    /**
+    * Holds Foursquare filtered place's modified names to fit Google Map's marker's names
+    *
+    * @property filteredNames
+    * @type Array
+    */
+    filteredNames: [],
+
+    /**
+    * Holds Foursquare filtered place's to pass to Google Maps
+    *
+    * @property pinPosterLocations
+    * @type Array
+    */
     pinPosterLocations: [],
+    
+    /**
+    * Holds markers from Google Maps
+    *
+    * @property markers
+    * @type Array
+    */
     markers: [],
+
+    /**
+    * Holds infowindows from Google Maps
+    *
+    * @property infoWindows
+    * @type Array
+    */
     infoWindows: []
 
 
   };
 
-  /**
-   * Helps to control the application
-   *
-   */
+
   var octopus = {
     /**
-     * @method setFoursquareDatas
-     *
+     * Sets FoursquareData
+     * @method setFoursquareData
      * @param {object} Stores the recommended places taken from Foursquare API
      */
     setFoursquareData: function (places) {
 
       Model["foursquareData"] = places;
-      //initialData.foursquareData.push(places);
+
 
     },
 
     /**
-     * @method getFoursquareData
+     * Gets current city value to search Foursquare recommendations
      *
+     * @method getFoursquareData
      * @param {object} Retrieves the recommended places taken from Foursquare API
      */
 
@@ -108,8 +151,7 @@
   };
 
   //Place object related to the HTML View
-  var Place;
-  Place = function (data) {
+  var Place = function (data) {
 
 
     var self = this;
@@ -125,7 +167,7 @@
      });
 
 
-    console.log(self.rating());
+
 
 
     octopus.setPinPosterLocations(self.location());
@@ -206,9 +248,6 @@
 
       onSelect: function (suggestion) {
 
-        var locations= octopus.getPinPosterLocations();
-        //console.log(locations);
-
         var newList=[];
         var newLocation=suggestion.value;
         newList.push(newLocation);
@@ -233,12 +272,7 @@
       var location=name + ', ' + address;
       var bounds = window.mapBounds;
 
-      //octopus.setPinPosterLocations(location);
 
-
-
-
-      //console.log(locationsList);
 
       var marker = new google.maps.Marker({
         map: map,
@@ -247,14 +281,14 @@
       });
 
       octopus.setMarkers(marker);
-      //markers.push(marker);
+
 
       var infoWindow = new google.maps.InfoWindow({
         content: name
       });
 
       octopus.setInfoWindows(infoWindow);
-      //infos.push(infoWindow);
+
 
       google.maps.event.addListener(marker, 'click', function () {
 
@@ -354,9 +388,8 @@
 
     window.mapBounds = new google.maps.LatLngBounds();
 
-    //locations=locationFinder();
     pinPoster(locations);
-    //pinPoster(location);
+
 
 
     window.addEventListener('resize', function (e) {
@@ -508,15 +541,6 @@
 
     });
 
-    /*this.setCurrentPlace= function(clickedListItem) {
-
-     var markersList=octopus.getMarkers();
-     var infoWindowsList=octopus.getInfoWindows();
-     self.currentPlace(clickedListItem);
-     console.log(self.currentPlace());
-     console.log(markersList);
-     console.log(infoWindowsList);
-     }*/
 
 
   };
