@@ -416,6 +416,16 @@
 
     });
 
+
+    /**
+     * Creates markers and infoWindows for each of the locations, sets map's center and bounds and animates
+     * the marker when clicked
+     *
+     * @function createMapMarker
+     * @param placeData {Object} The filtered place recommended by Foursquare that matches markers and infoWindows
+     * which is going to be rendered on Google Maps
+     */
+
     function createMapMarker(placeData) {
 
       //console.log(placeData);
@@ -458,6 +468,14 @@
 
     }
 
+    /**
+     * Retrieves the result of the query for each of the locations
+     *
+     * @function callback
+     * @param results {Object} query results from Google Maps Places
+     * @property OK denotes the success of the request
+     */
+
     function callback(results, status) {
 
       if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -466,6 +484,14 @@
 
       }
     }
+
+    /**
+     * Creates an instance of Google Maps Places
+     *
+     * @function pinPoster
+     * @param locations {Object} The filtered place recommended by Foursquare that matches markers and infoWindows
+     * which is going to be rendered on Google Maps
+     */
 
     function pinPoster(locations) {
 
@@ -484,11 +510,23 @@
       }
     }
 
+    /**
+     * Listens to a showButton's click event
+     *
+     * @method addEventListener
+     */
+
     showButton.addEventListener('click', function () {
 
       showMarkers();
 
     }, false);
+
+    /**
+     * Listens to a hideButton's click event
+     *
+     * @method addEventListener
+     */
 
     hideButton.addEventListener('click', function () {
 
@@ -496,6 +534,12 @@
 
     }, false);
 
+    /**
+     * Updates the map
+     *
+     * @function setAllMap
+     * @param map
+     */
 
     function setAllMap(map) {
 
@@ -508,6 +552,12 @@
       }
 
     }
+
+    /**
+     * Shows the markers on the map
+     *
+     * @function showMarkers
+     */
 
     function showMarkers() {
 
@@ -523,6 +573,12 @@
       setAllMap(map);
 
     }
+
+    /**
+     * Hides the markers on the map
+     *
+     * @function clearMarkers
+     */
 
     function clearMarkers() {
 
@@ -553,6 +609,13 @@
 
   };
 
+  /**
+   * A "class" defining a map with recommended restaurants
+   *
+   * @class map
+   * @constructor
+   */
+
   var mapOptions = {
 
     disableDefaultUI: false
@@ -561,8 +624,13 @@
   var map = new google.maps.Map(document.getElementById("mapDiv"), mapOptions);
 
 
+  /**
+   * A "class" that retrieves and process the data to create the listView and the map
+   *
+   * @class PlacesViewModel
+   * @constructor
+   */
 
-  //Retrieve and manage data
   var PlacesViewModel = function () {
 
     var self = this;
@@ -581,7 +649,12 @@
         clientID + '&client_secret=' + clientSecret + '&v=20130815&query=sushi';
 
 
-    //Retrieving data from Foursquare API
+    /**
+     * Gets the data from Foursquare API
+     *
+     * @function getDataFoursquare
+     */
+
     function getDataFoursquare(callback) {
 
       $.getJSON(foursquareUrl, function (data) {
@@ -600,11 +673,17 @@
 
     }
 
-    //Callback function, filter data, stores it on Model
+    /**
+     * Callback function, filters data, stores it on Model object
+     *
+     * @function getDataFoursquare
+     */
+
+    //
     getDataFoursquare(function (placesData) {
 
       var placesList = placesData;//All the Foursquare data
-      console.log(placesList);
+      //console.log(placesList);
       var j = 0;
       var i = 0;
       var h = 0;
@@ -620,13 +699,14 @@
         if (name != "Miu Japonés" && name != "Miu" && name != "Shibui Bilbo" && name != "Wok Chitau Nauo" && name != "Restaurante Xikelai Wok" && name !="SUMO Ledesma" && name !="SUMO") {
 
           filteredList.push(place);
-          //filteredList.push(name);
+
         }
 
       }
 
 
-      //Transform the Foursquare API object into writable object
+      //Transforms the Foursquare API object into writable object
+
       for (i; i < filteredList.length; i++) {
 
         var placeItem = filteredList[i];
@@ -649,7 +729,9 @@
         filteredNames.push(location);
 
       }
-      //Modify the name property to fit Google Map's marker's title property
+
+      //Modifies the name property of Foursquare places to fit Google Map's marker's title property
+
       for (h; h < filteredNames.length; h++) {
 
         var locationItem = filteredNames[h];
@@ -679,11 +761,15 @@
         }
       }
 
+      //Creates places to be rendered on the map
+
       filteredNames.forEach(function (placeItem) {
 
         self.places.push(new Place(placeItem));
 
       });
+
+      //Stores the data on Model Object
 
       octopus.setFoursquareData(placesList);
       octopus.setFilteredPlaces(filteredList);
@@ -694,7 +780,6 @@
 
 
     });
-
 
 
   };
