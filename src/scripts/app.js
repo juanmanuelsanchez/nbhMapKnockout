@@ -608,7 +608,7 @@
     window.addEventListener('resize', function (e) {
       map.fitBounds(mapBounds);
 
-    });
+    })
 
   };
 
