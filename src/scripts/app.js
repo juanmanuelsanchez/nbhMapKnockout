@@ -2,7 +2,7 @@
 /*globals Model, octopus*/
 (function () {
 
-  "use strict";
+  //"use strict";
 
   var Model = {
 
@@ -114,6 +114,7 @@
     setFilteredPlaces: function (place) {
 
       Model["filteredPlaces"] = place;
+
     },
 
     /**
@@ -140,6 +141,7 @@
     setFilteredNames: function (name) {
 
       Model["filteredNames"] = name;
+
     },
 
     /**
@@ -367,7 +369,7 @@
         showButton.style.webkitAnimationDuration='1s';
 
         var listSuggestions=[];
-        for(var suggestion in suggestions) {
+        for(suggestion in suggestions) {
 
          var location= suggestions[suggestion].value;
          listSuggestions.push(location);
@@ -499,7 +501,7 @@
 
       var service = new google.maps.places.PlacesService(map);
 
-      for (var place in locations) {
+      for (place in locations) {
 
         var request = {
 

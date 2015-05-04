@@ -107,7 +107,7 @@ module.exports = function(grunt) {
           src: ["**", "!scripts/**", "!tests/**"],
           dest: outputFolder,
 
-          // The "expand" property ensures the orginal folder structure is kept
+          // The "expand" property ensures the original folder structure is kept
           // intact when the files are copied over
           expand: true
         }]
