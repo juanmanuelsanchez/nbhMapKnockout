@@ -33,7 +33,7 @@ module.exports = function(grunt) {
       outputDocsFolder = outputFolder + "docs/";
 
   // Load the JSHint, Connect and Watch tasks, which will be used for local development
-  grunt.loadNpmTasks("grunt-contrib-jshint");
+  //grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-contrib-connect");
   grunt.loadNpmTasks("grunt-contrib-watch");
 
@@ -55,12 +55,12 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON("package.json"),
 
     // Configure JSHint as in Listing 15-4
-    jshint: {
+    /*jshint: {
       options: {
         strict: true
       },
       src: scriptFiles
-    },
+    },*/
 
     // Configure Connect as in Listing 15-4
     connect: {
@@ -210,5 +210,5 @@ module.exports = function(grunt) {
   // concatenate the JavaScript files into a single application file, minify the contents of
   // that file, and finally generate a documentation site based on the YUIDoc-formatted code
   // comments in the original JavaScript files
-  grunt.registerTask("build", ["clean", "copy", "jshint",/* "jasmine",*/"concat", "uglify", "yuidoc"]);
+  grunt.registerTask("build", ["clean", "copy",/* "jshint",*//* "jasmine",*/"concat", "uglify", "yuidoc"]);
 };
