@@ -1,10 +1,11 @@
 /*jshint devel:true, unused:false*/
 /*globals Model, octopus*/
 (function () {
-  
-   
+
+  "use strict";
+
   var Model = {
-  
+
   /**
    * Holds current city to search Foursquare recommendations
    *
@@ -305,7 +306,7 @@
         var info = infoWindowsList[i];
         if (clickedListItem.name() == info.content && clickedListItem.name() === marker.title) {
 
-          if (marker.getAnimation() != null) {
+          if (marker.getAnimation() !== null) {
 
             marker.setAnimation(null);
             info.close(map, marker);
@@ -366,7 +367,7 @@
         showButton.style.webkitAnimationDuration='1s';
 
         var listSuggestions=[];
-        for(suggestion in suggestions) {
+        for(var suggestion in suggestions) {
 
          var location= suggestions[suggestion].value;
          listSuggestions.push(location);
@@ -394,7 +395,7 @@
         //console.log(newList);
         clearMarkers();
         pinPoster(newList);
-        foursquareHeader.innerHTML="Foursquare recommended places(hide and/or populate with markers & click to choose!)"
+        foursquareHeader.innerHTML="Foursquare recommended places(hide and/or populate with markers & click to choose!)";
       },
 
       /**
@@ -498,7 +499,7 @@
 
       var service = new google.maps.places.PlacesService(map);
 
-      for (place in locations) {
+      for (var place in locations) {
 
         var request = {
 
@@ -605,7 +606,7 @@
     window.addEventListener('resize', function (e) {
       map.fitBounds(mapBounds);
 
-    })
+    });
 
   };
 

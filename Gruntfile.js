@@ -42,7 +42,7 @@ module.exports = function(grunt) {
   // files for public consumption
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-copy");
-  grunt.loadNpmTasks("grunt-contrib-jasmine");
+  //grunt.loadNpmTasks("grunt-contrib-jasmine");
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-yuidoc");
@@ -117,7 +117,7 @@ module.exports = function(grunt) {
     // Configure Jasmine to run together with Istanbul to ensure unit tests pass and to
     // generate a code coverage report which will be placed in the "dist/report" output
     // folder for review.
-    jasmine: {
+    /*jasmine: {
       coverage: {
         src: scriptFiles,
         options: {
@@ -136,7 +136,7 @@ module.exports = function(grunt) {
           }
         }
       }
-    },
+    },*/
 
     // Instruct the Concat task to combine all the JavaScript files located in the
     // "src/scripts/" folder into a single file, which we'll call "main.js". We can
@@ -210,5 +210,5 @@ module.exports = function(grunt) {
   // concatenate the JavaScript files into a single application file, minify the contents of
   // that file, and finally generate a documentation site based on the YUIDoc-formatted code
   // comments in the original JavaScript files
-  grunt.registerTask("build", ["clean", "copy", "jshint", "jasmine", "concat", "uglify", "yuidoc"]);
+  grunt.registerTask("build", ["clean", "copy", "jshint",/* "jasmine",*/"concat", "uglify", "yuidoc"]);
 };
