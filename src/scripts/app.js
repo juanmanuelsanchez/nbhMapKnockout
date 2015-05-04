@@ -2,74 +2,73 @@
 /*globals Model, octopus*/
 (function () {
 
-  //"use strict";
 
   var Model = {
 
-  /**
-   * Holds current city to search Foursquare recommendations
-   *
-   * @property currentCity
-   * @type String
-   * @default null
-   */
+    /**
+     * Holds current city to search Foursquare recommendations
+     *
+     * @property currentCity
+     * @type String
+     * @default null
+     */
     currentCity: null,
 
-  /**
-   * Holds the value to set the current city
-   *
-   * @property cities
-   * @type Array
-   * @default ["Bilbao"]
-   */
+    /**
+     * Holds the value to set the current city
+     *
+     * @property cities
+     * @type Array
+     * @default ["Bilbao"]
+     */
     cities: ["Bilbao"],
 
     /**
-    * Holds all recommendations from Foursquare
-    *
-    * @property filteredData
-    * @type Array
-    */
+     * Holds all recommendations from Foursquare
+     *
+     * @property filteredData
+     * @type Array
+     */
     foursquareData: [],
 
     /**
-    * Holds filtered recommendations from Foursquare to properly work with Google Maps API
-    *
-    * @property filteredPlaces
-    * @type Array
-    */
+     * Holds filtered recommendations from Foursquare to properly work with Google Maps API
+     *
+     * @property filteredPlaces
+     * @type Array
+     */
     filteredPlaces: [],
 
     /**
-    * Holds Foursquare filtered place's modified names to fit Google Map's marker's names
-    *
-    * @property filteredNames
-    * @type Array
-    */
+     * Holds Foursquare filtered place's modified names to fit Google Map's marker's names
+     *
+     * @property filteredNames
+     * @type Array
+     */
     filteredNames: [],
 
     /**
-    * Holds Foursquare filtered place's to pass to Google Maps
-    *
-    * @property pinPosterLocations
-    * @type Array
-    */
+     * Holds Foursquare filtered place's to pass to Google Maps
+     *
+     * @property pinPosterLocations
+     * @type Array
+     */
     pinPosterLocations: [],
-    
+
     /**
-    * Holds markers from Google Maps
-    *
-    * @property markers
-    * @type Array
-    */
+     * Holds markers from Google Maps
+     *
+     * @property markers
+     * @type Array
+     */
     markers: [],
 
     /**
-    * Holds infowindows from Google Maps
-    *
-    * @property infoWindows
-    * @type Array
-    */
+     * Holds infowindows from Google Maps
+     *
+     * @property infoWindows
+     * @type Array
+     */
     infoWindows: []
 
 
@@ -114,7 +113,6 @@
     setFilteredPlaces: function (place) {
 
       Model["filteredPlaces"] = place;
-
     },
 
     /**
@@ -141,7 +139,6 @@
     setFilteredNames: function (name) {
 
       Model["filteredNames"] = name;
-
     },
 
     /**
@@ -257,8 +254,8 @@
     self.rating= ko.observable(data.rating);
 
     self.listView = ko.pureComputed(function () {//It's better than ko.computed for calculate and return a value
-     return self.name() + "    " + self.rating();
-     });
+      return self.name() + "    " + self.rating();
+    });
 
 
 
@@ -308,7 +305,7 @@
         var info = infoWindowsList[i];
         if (clickedListItem.name() == info.content && clickedListItem.name() === marker.title) {
 
-          if (marker.getAnimation() !== null) {
+          if (marker.getAnimation() != null) {
 
             marker.setAnimation(null);
             info.close(map, marker);
@@ -371,12 +368,12 @@
         var listSuggestions=[];
         for(suggestion in suggestions) {
 
-         var location= suggestions[suggestion].value;
-         listSuggestions.push(location);
+          var location= suggestions[suggestion].value;
+          listSuggestions.push(location);
 
-         }
-         clearMarkers();
-         pinPoster(listSuggestions);
+        }
+        clearMarkers();
+        pinPoster(listSuggestions);
 
       },
 
@@ -397,7 +394,7 @@
         //console.log(newList);
         clearMarkers();
         pinPoster(newList);
-        foursquareHeader.innerHTML="Foursquare recommended places(hide and/or populate with markers & click to choose!)";
+        foursquareHeader.innerHTML="Foursquare recommended places(hide and/or populate with markers & click to choose!)"
       },
 
       /**
@@ -682,7 +679,7 @@
      * @function getDataFoursquare
      */
 
-    //
+      //
     getDataFoursquare(function (placesData) {
 
       var placesList = placesData;//All the Foursquare data
