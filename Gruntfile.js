@@ -1,5 +1,5 @@
 /**
- * Created by juanmanuelsanchez on 19/4/15.
+ * Created by juanmanuelsanchez 'jsonp' on 19/4/15.
  */
 module.exports = function(grunt) {
   "use strict";
@@ -55,12 +55,12 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON("package.json"),
 
     // Configure JSHint as in Listing 15-4
-    /*jshint: {
+    jshint: {
       options: {
         strict: true
       },
       src: scriptFiles
-    },*/
+    },
 
     // Configure Connect as in Listing 15-4
     connect: {
@@ -117,7 +117,7 @@ module.exports = function(grunt) {
     // Configure Jasmine to run together with Istanbul to ensure unit tests pass and to
     // generate a code coverage report which will be placed in the "dist/report" output
     // folder for review.
-    /*jasmine: {
+    jasmine: {
       coverage: {
         src: scriptFiles,
         options: {
@@ -136,7 +136,7 @@ module.exports = function(grunt) {
           }
         }
       }
-    },*/
+    },
 
     // Instruct the Concat task to combine all the JavaScript files located in the
     // "src/scripts/" folder into a single file, which we'll call "main.js". We can
