@@ -1,0 +1,521 @@
+{
+    "project": {
+        "name": "nbhMapKnockout",
+        "version": "1.0.0"
+    },
+    "files": {
+        "src/scripts/app.js": {
+            "name": "src/scripts/app.js",
+            "modules": {},
+            "classes": {
+                "Place": 1,
+                "map": 1,
+                "PlacesViewModel": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Place": {
+            "name": "Place",
+            "shortname": "Place",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src/scripts/app.js",
+            "line": 237,
+            "description": "A \"class\" defining recommended restaurants",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "data",
+                    "description": "The filtered place recommended by Foursquare that matches markers and infoWindows\nwhich is going to be rendered on Google Maps",
+                    "type": "Object"
+                }
+            ]
+        },
+        "map": {
+            "name": "map",
+            "shortname": "map",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src/scripts/app.js",
+            "line": 619,
+            "description": "A \"class\" defining a map with recommended restaurants",
+            "is_constructor": 1
+        },
+        "PlacesViewModel": {
+            "name": "PlacesViewModel",
+            "shortname": "PlacesViewModel",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src/scripts/app.js",
+            "line": 634,
+            "description": "A \"class\" that retrieves and process the data to create the listView and the map",
+            "is_constructor": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "src/scripts/app.js",
+            "line": 8,
+            "description": "Holds current city to search Foursquare recommendations",
+            "itemtype": "property",
+            "name": "currentCity",
+            "type": "String",
+            "default": "null",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 17,
+            "description": "Holds the value to set the current city",
+            "itemtype": "property",
+            "name": "cities",
+            "type": "Array",
+            "default": "[\"Bilbao\"]",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 26,
+            "description": "Holds all recommendations from Foursquare",
+            "itemtype": "property",
+            "name": "filteredData",
+            "type": "Array",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 34,
+            "description": "Holds filtered recommendations from Foursquare to properly work with Google Maps API",
+            "itemtype": "property",
+            "name": "filteredPlaces",
+            "type": "Array",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 42,
+            "description": "Holds Foursquare filtered place's modified names to fit Google Map's marker's names",
+            "itemtype": "property",
+            "name": "filteredNames",
+            "type": "Array",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 50,
+            "description": "Holds Foursquare filtered place's to pass to Google Maps",
+            "itemtype": "property",
+            "name": "pinPosterLocations",
+            "type": "Array",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 58,
+            "description": "Holds markers from Google Maps",
+            "itemtype": "property",
+            "name": "markers",
+            "type": "Array",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 66,
+            "description": "Holds infowindows from Google Maps",
+            "itemtype": "property",
+            "name": "infoWindows",
+            "type": "Array",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 79,
+            "description": "Stores the recommended places taken from Foursquare API",
+            "itemtype": "property",
+            "name": "setFoursquareData",
+            "type": "Function",
+            "class": "Place",
+            "subprops": [
+                {
+                    "name": "places",
+                    "description": "The places recommended by Foursquare",
+                    "type": "Object"
+                }
+            ]
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 93,
+            "description": "Retrieves the recommended places taken from Foursquare API",
+            "itemtype": "property",
+            "name": "getFoursquareData",
+            "type": "Function",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 105,
+            "description": "Stores filtered recommended places taken from Foursquare API",
+            "itemtype": "property",
+            "name": "setFilteredPlaces",
+            "type": "Function",
+            "class": "Place",
+            "subprops": [
+                {
+                    "name": "place",
+                    "description": "The filtered places recommended by Foursquare",
+                    "type": "Object"
+                }
+            ]
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 118,
+            "description": "Retrieves filtered recommended places taken from Foursquare API",
+            "itemtype": "property",
+            "name": "getFilteredPlaces",
+            "type": "Function",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 130,
+            "description": "Stores filtered recommended places taken from Foursquare API to match Google Maps markers\nand infoWindows",
+            "itemtype": "property",
+            "name": "setFilteredNames",
+            "type": "Function",
+            "class": "Place",
+            "subprops": [
+                {
+                    "name": "name",
+                    "description": "The filtered place recommended by Foursquare to match markers and infoWindows",
+                    "type": "Object"
+                }
+            ]
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 144,
+            "description": "Retrieves filtered recommended places taken from Foursquare API to match Google Maps markers\nand infoWindows",
+            "itemtype": "property",
+            "name": "getFilteredNames",
+            "type": "Function",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 157,
+            "description": "Stores markers from Google Maps API",
+            "itemtype": "property",
+            "name": "setMarkers",
+            "type": "Function",
+            "class": "Place",
+            "subprops": [
+                {
+                    "name": "marker",
+                    "description": "The markers from Google Maps API",
+                    "type": "Object"
+                }
+            ]
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 170,
+            "description": "Retrieves markers from Google Maps API",
+            "itemtype": "property",
+            "name": "getMarkers",
+            "type": "Function",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 182,
+            "description": "Stores infoWindows from Google Maps API",
+            "itemtype": "property",
+            "name": "setInfoWindows",
+            "type": "Function",
+            "class": "Place",
+            "subprops": [
+                {
+                    "name": "infoWindow",
+                    "description": "The infoWindows from Google Maps API",
+                    "type": "Object"
+                }
+            ]
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 195,
+            "description": "Retrieves infoWindows from Google Maps API",
+            "itemtype": "property",
+            "name": "getInfoWindows",
+            "type": "Function",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 207,
+            "description": "Stores locations which are going to be rendered on Google Maps API",
+            "itemtype": "property",
+            "name": "setPinPosterLocations",
+            "type": "Function",
+            "class": "Place",
+            "subprops": [
+                {
+                    "name": "location",
+                    "description": "The filtered place recommended by Foursquare that matchs markers and infoWindows\nwhich is going to be rendered on Google Maps",
+                    "type": "Object"
+                }
+            ]
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 221,
+            "description": "Retrieves locations which are going to be rendered on Google Maps API",
+            "itemtype": "property",
+            "name": "getPinPosterLocations",
+            "type": "Function",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 282,
+            "description": "Sets the scope to a clickedListItem through the data-bind on 'li' items of the DOM, animates\nthe related Google Maps marker",
+            "itemtype": "method",
+            "name": "setCurrentPlace",
+            "params": [
+                {
+                    "name": "clickedListItem",
+                    "description": "The clicked list item from the DOM",
+                    "type": "Object"
+                }
+            ],
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 322,
+            "description": "Creates an autocomplete functionality on the search bar to filter the rendered places.\nCredits: Ajax Autocomplete for jQuery, version 1.2.18, (c) 2014 Tomas Kirda.",
+            "itemtype": "method",
+            "name": "devbridgeAutocomplete",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 331,
+            "description": "Holds locations which are rendered on Google Maps API to make string matching suggestions",
+            "itemtype": "property",
+            "name": "lookup",
+            "type": "Array",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 340,
+            "description": "Denotes the number of characters to define the string matching",
+            "itemtype": "property",
+            "name": "minChars",
+            "type": "Number",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 349,
+            "description": "Suggest the rendered locations on the search bar",
+            "itemtype": "property",
+            "name": "onSearchComplete",
+            "type": "Function",
+            "class": "Place",
+            "subprops": [
+                {
+                    "name": "locationsList",
+                    "description": "the locations rendered on Google Map",
+                    "type": "Array"
+                },
+                {
+                    "name": "suggestions",
+                    "description": "the locations suggested by the autocomplete functionality\nof the search bar",
+                    "type": "Array"
+                }
+            ]
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 380,
+            "description": "Filters the selected location on the search bar and renders it on the map",
+            "itemtype": "property",
+            "name": "onSelect",
+            "type": "Function",
+            "class": "Place",
+            "subprops": [
+                {
+                    "name": "suggestion",
+                    "description": "the location selected on the search bar",
+                    "type": "Array"
+                }
+            ]
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 400,
+            "description": "Sets string mismatches communication on the search bar",
+            "itemtype": "property",
+            "name": "showNoSuggestionNotice",
+            "type": "Boolean",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 409,
+            "description": "Communicates string mismatches communication on the search bar",
+            "itemtype": "property",
+            "name": "showNoSuggestionNotice",
+            "type": "Boolean",
+            "class": "Place"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 427,
+            "description": "Creates markers and infoWindows for each of the locations, sets map's center and bounds and animates\nthe marker when clicked",
+            "itemtype": "method",
+            "name": "createMapMarker",
+            "params": [
+                {
+                    "name": "placeData",
+                    "description": "The filtered place recommended by Foursquare that matches markers and infoWindows\nwhich is going to be rendered on Google Maps",
+                    "type": "Object"
+                }
+            ],
+            "class": "map"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 478,
+            "description": "Retrieves the result of the query for each of the locations",
+            "itemtype": "property",
+            "name": "OK denotes the success of the request",
+            "class": "map",
+            "subprops": [
+                {
+                    "name": "results",
+                    "description": "query results from Google Maps Places",
+                    "type": "Object"
+                }
+            ]
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 495,
+            "description": "Creates an instance of Google Maps Places",
+            "itemtype": "method",
+            "name": "pinPoster",
+            "params": [
+                {
+                    "name": "locations",
+                    "description": "The filtered place recommended by Foursquare that matches markers and infoWindows\nwhich is going to be rendered on Google Maps",
+                    "type": "Object"
+                }
+            ],
+            "class": "map"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 520,
+            "description": "Listens to a showButton's click event",
+            "itemtype": "method",
+            "name": "addEventListener",
+            "class": "map"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 532,
+            "description": "Listens to a hideButton's click event",
+            "itemtype": "method",
+            "name": "addEventListener",
+            "class": "map"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 544,
+            "description": "Updates the map",
+            "itemtype": "method",
+            "name": "setAllMap",
+            "params": [
+                {
+                    "name": "map",
+                    "description": ""
+                }
+            ],
+            "class": "map"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 563,
+            "description": "Shows the markers on the map",
+            "itemtype": "method",
+            "name": "showMarkers",
+            "class": "map"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 584,
+            "description": "Hides the markers on the map",
+            "itemtype": "method",
+            "name": "clearMarkers",
+            "class": "map"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 645,
+            "description": "Holds the value of current city taken from the Model",
+            "itemtype": "property",
+            "name": "this.currentCity",
+            "type": "observableArray",
+            "class": "PlacesViewModel"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 659,
+            "description": "Holds the objects retrieved from Foursquare API",
+            "itemtype": "property",
+            "name": "this.places",
+            "type": "observableArray",
+            "class": "PlacesViewModel"
+        },
+        {
+            "file": "src/scripts/app.js",
+            "line": 675,
+            "description": "Gets the data from Foursquare API and process data to create the map",
+            "itemtype": "method",
+            "name": "getDataFoursquare",
+            "class": "PlacesViewModel"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: function with method",
+            "line": " src/scripts/app.js:478"
+        },
+        {
+            "message": "replacing incorrect tag: function with method",
+            "line": " src/scripts/app.js:495"
+        },
+        {
+            "message": "replacing incorrect tag: function with method",
+            "line": " src/scripts/app.js:675"
+        }
+    ]
+}

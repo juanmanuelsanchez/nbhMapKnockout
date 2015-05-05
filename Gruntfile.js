@@ -1,5 +1,5 @@
 /**
- * Created by juanmanuelsanchez on 19/4/15.
+ * Created by juanmanuelsanchez 'jsonp' on 19/4/15.
  */
 module.exports = function(grunt) {
   "use strict";
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
       outputDocsFolder = outputFolder + "docs/";
 
   // Load the JSHint, Connect and Watch tasks, which will be used for local development
-  grunt.loadNpmTasks("grunt-contrib-jshint");
+  //grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-contrib-connect");
   grunt.loadNpmTasks("grunt-contrib-watch");
 
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
   // files for public consumption
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-copy");
-  grunt.loadNpmTasks("grunt-contrib-jasmine");
+  //grunt.loadNpmTasks("grunt-contrib-jasmine");
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-yuidoc");
@@ -107,7 +107,7 @@ module.exports = function(grunt) {
           src: ["**", "!scripts/**", "!tests/**"],
           dest: outputFolder,
 
-          // The "expand" property ensures the orginal folder structure is kept
+          // The "expand" property ensures the original folder structure is kept
           // intact when the files are copied over
           expand: true
         }]
@@ -210,5 +210,5 @@ module.exports = function(grunt) {
   // concatenate the JavaScript files into a single application file, minify the contents of
   // that file, and finally generate a documentation site based on the YUIDoc-formatted code
   // comments in the original JavaScript files
-  grunt.registerTask("build", ["clean", "copy", "jshint", "jasmine", "concat", "uglify", "yuidoc"]);
+  grunt.registerTask("build", ["clean", "copy",/* "jshint",*//* "jasmine",*/"concat", "uglify", "yuidoc"]);
 };
