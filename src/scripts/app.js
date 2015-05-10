@@ -1,3 +1,15 @@
+/**
+ * Created by juanmanuelsanchez on 10/5/15.
+ */
+/**
+ * Created by juanmanuelsanchez on 9/5/15.
+ */
+/**
+ * Created by juanmanuelsanchez on 7/5/15.
+ */
+/**
+ * Created by juanmanuelsanchez on 6/5/15.
+ */
 /*jshint devel:true, unused:false*/
 /*globals Model, octopus*/
 (function () {
@@ -139,6 +151,7 @@
     setFilteredNames: function (name) {
 
       Model["filteredNames"] = name;
+
     },
 
     /**
@@ -228,6 +241,16 @@
     getPinPosterLocations: function () {
 
       return Model.pinPosterLocations;
+    },
+
+    clearMarkers: function () {
+
+      Model.markers=[];
+
+    },
+    clearInfoWindows: function () {
+
+      Model.infoWindows=[];
     }
 
   };
@@ -265,14 +288,20 @@
     var locationsList= octopus.getPinPosterLocations();
     var locations= [];
     locations.push(self.location());
-    var markers= octopus.getMarkers();
-    var infos= octopus.getInfoWindows();
+    console.log(locations);
+
+    var markersList=octopus.getMarkers();
+    console.log(markersList);
+
+    var infoWindowsList=octopus.getInfoWindows();
+
 
     var showButton= document.getElementById("show");
     var hideButton= document.getElementById("hide");
     var placesList= document.getElementById("places-list");
     var foursquareHeader= document.getElementById("foursquare-header");
     var inputBox= document.getElementById("autocomplete");
+
 
     showButton.style.display="none";
 
@@ -288,34 +317,109 @@
      */
 
     this.setCurrentPlace = function (clickedListItem) {
-      var j = 0;
-      var i = 0;
-      var markersList = octopus.getMarkers();
-      var infoWindowsList = octopus.getInfoWindows();
-      var markersLength = markersList.length;
-      var infoWindowsLength = infoWindowsList.length;
-      //console.log(clickedListItem.name());
-      //console.log(clickedListItem.address());
-      //console.log(markersList);
-      //console.log(infoWindowsList);
 
-      for (i, j; i < markersLength, j < infoWindowsLength; i++, j++) {
+      if (markersList.length<7) {
+        var j = 0;
+        var i = 0;
+        var h = 0;
+        var w = 0;
 
-        var marker = markersList[j];
-        var info = infoWindowsList[i];
-        if (clickedListItem.name() == info.content && clickedListItem.name() === marker.title) {
+        //infoWindowsList=[];
+        //markersList = octopus.getMarkers();
+        //infoWindowsList = octopus.getInfoWindows();
+        var markersLength = markersList.length;
+        var infoWindowsLength = infoWindowsList.length;
+        //console.log(clickedListItem.name());
+        //console.log(clickedListItem.address());
+        console.log(markersList);
+        console.log(infoWindowsList);
 
-          if (marker.getAnimation() != null) {
+        for (i, j; i < markersLength, j < infoWindowsLength; i++, j++) {
 
-            marker.setAnimation(null);
-            info.close(map, marker);
-          } else {
+          var marker = markersList[j];
+          var info = infoWindowsList[i];
+          //marker.setAnimation(null);
+          //info.close(map,marker);
+          if (clickedListItem.name() == info.content && clickedListItem.name() === marker.title) {
 
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-            info.open(map, marker);
+            if (marker.getAnimation() != null) {
+
+              for (h, w; h < markersLength, w < infoWindowsLength; h++, w++) {
+                var pin = markersList[h];
+                var infowindow = infoWindowsList[w];
+
+                pin.setAnimation(null);
+                infowindow.close(map, marker);
+              }
+
+            } else {
+
+              for (h, w; h < markersLength, w < infoWindowsLength; h++, w++) {
+                var pin = markersList[h];
+                var infowindow = infoWindowsList[w];
+
+                pin.setAnimation(null);
+                infowindow.close(map, marker);
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+                info.open(map, marker);
+              }
+
+
+            }
           }
         }
+      }else{
+
+        var j = 0;
+        var i = 0;
+        var h = 0;
+        var w = 0;
+        markersList.splice(7);//comprueba qué pasa si se elimina
+        var markersLength = markersList.length;
+        var infoWindowsLength = infoWindowsList.length;
+        //console.log(clickedListItem.name());
+        //console.log(clickedListItem.address());
+        console.log(markersList);
+        console.log(infoWindowsList);
+
+        for (i, j; i < markersLength, j < infoWindowsLength; i++, j++) {
+
+          var marker = markersList[j];
+          var info = infoWindowsList[i];
+          //marker.setAnimation(null);
+          //info.close(map,marker);
+          if (clickedListItem.name() == info.content && clickedListItem.name() === marker.title) {
+
+            if (marker.getAnimation() != null) {
+
+              for (h, w; h < markersLength, w < infoWindowsLength; h++, w++) {
+                var pin = markersList[h];
+                var infowindow = infoWindowsList[w];
+
+                pin.setAnimation(null);
+                infowindow.close(map, marker);
+              }
+
+            } else {
+
+              for (h, w; h < markersLength, w < infoWindowsLength; h++, w++) {
+                var pin = markersList[h];
+                var infowindow = infoWindowsList[w];
+
+                pin.setAnimation(null);
+                infowindow.close(map, marker);
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+                info.open(map, marker);
+              }
+
+
+            }
+          }
+        }
+
+
       }
+
 
     };
 
@@ -361,9 +465,10 @@
         placesList.style.display="none";
         placesList.style.webkitAnimationName='fadeOut';
         placesList.style.webkitAnimationDuration='1s';
-        showButton.style.display="inline";
-        showButton.style.webkitAnimationName='fadeIn';
+        showButton.style.display="none";
+        showButton.style.webkitAnimationName='fadeOut';
         showButton.style.webkitAnimationDuration='1s';
+
 
         var listSuggestions=[];
         for(suggestion in suggestions) {
@@ -374,6 +479,7 @@
         }
         clearMarkers();
         pinPoster(listSuggestions);
+
 
       },
 
@@ -391,10 +497,12 @@
         var newList=[];
         var newLocation=suggestion.value;
         newList.push(newLocation);
-        //console.log(newList);
+        console.log(newList);
         clearMarkers();
+        //markersList=[];
         pinPoster(newList);
-        foursquareHeader.innerHTML="Foursquare recommended places(hide and/or populate with markers & click to choose!)"
+
+        //foursquareHeader.innerHTML="Foursquare recommended places(hide and/or populate with markers & click to choose!)"
       },
 
       /**
@@ -433,8 +541,10 @@
      * which is going to be rendered on Google Maps
      */
 
-    function createMapMarker(placeData) {
 
+
+    function createMapMarker(placeData) {
+      ;
       //console.log(placeData);
       var lat = placeData.geometry.location.lat();
       var lon = placeData.geometry.location.lng();
@@ -442,6 +552,7 @@
       var address=placeData.formatted_address;
       var location=name + ', ' + address;
       var bounds = window.mapBounds;
+
 
 
 
@@ -467,6 +578,8 @@
 
       });
 
+
+
       bounds.extend(new google.maps.LatLng(lat, lon));
 
       map.fitBounds(bounds);
@@ -485,11 +598,19 @@
 
     function callback(results, status) {
 
+      var $googleMapsErrorPanel= $('#google-map-error-panel');
+
+      if(status != google.maps.places.PlacesServiceStatus.OK) {
+        $googleMapsErrorPanel.html('<h2>Sorry, Google Maps could not be loaded</h2>');
+        return;
+      }
+
       if (status == google.maps.places.PlacesServiceStatus.OK) {
 
         createMapMarker(results[0]);
 
       }
+
     }
 
     /**
@@ -502,8 +623,15 @@
 
     function pinPoster(locations) {
 
+      if(typeof google.maps.places =='undefined') {
+
+        $('#google-map-error-panel').html('<h2>Sorry, Google Maps could not be loaded</h2>');
+        console.log('undefined!');
+        return;
+      }
 
       var service = new google.maps.places.PlacesService(map);
+
 
       for (place in locations) {
 
@@ -514,7 +642,9 @@
         };
 
         service.textSearch(request, callback);
+
       }
+
     }
 
     /**
@@ -526,6 +656,13 @@
     showButton.addEventListener('click', function () {
 
       showMarkers();
+      showButton.style.display="none";
+      showButton.style.webkitAnimationName='fadeOut';
+      showButton.style.webkitAnimationDuration='1s';
+      hideButton.style.display="inline";
+      hideButton.style.webkitAnimationName='fadeIn';
+      hideButton.style.webkitAnimationDuration='0.8s';
+
 
     }, false);
 
@@ -538,6 +675,12 @@
     hideButton.addEventListener('click', function () {
 
       clearMarkers();
+      showButton.style.display="inline";
+      showButton.style.webkitAnimationName='fadeIn';
+      showButton.style.webkitAnimationDuration='0.8s';
+      hideButton.style.display="none";
+      hideButton.style.webkitAnimationName='fadeOut';
+      hideButton.style.webkitAnimationDuration='1s';
 
     }, false);
 
@@ -551,11 +694,14 @@
     function setAllMap(map) {
 
       var j = 0;
-      var length = markers.length;
+
+
+      var length = markersList.length;
+      console.log(length);
 
       for (j; j < length; j++) {
 
-        markers[j].setMap(map);
+        markersList[j].setMap(map);
       }
 
     }
@@ -571,13 +717,13 @@
       placesList.style.display="block";
       placesList.style.webkitAnimationName='fadeIn';
       placesList.style.webkitAnimationDuration='1s';
-      showButton.style.display="none";
-      showButton.style.webkitAnimationName='fadeOut';
-      showButton.style.webkitAnimationDuration='1s';
       foursquareHeader.innerHTML="Foursquare recommended places(choose!):";
       inputBox.value=" ";
-
+      markersList.splice(7);
+      infoWindowsList.splice(7);
       setAllMap(map);
+
+
 
     }
 
@@ -591,21 +737,16 @@
 
       setAllMap(null);
 
-      if(showButton.style.display=="none") {
 
-        showButton.style.display="inline";
-        showButton.style.webkitAnimationName='fadeIn';
-        showButton.style.webkitAnimationDuration='0.8s';
-
-
-      }
 
     }
 
 
     window.mapBounds = new google.maps.LatLngBounds();
 
+
     pinPoster(locations);
+
 
 
 
@@ -628,7 +769,15 @@
     disableDefaultUI: false
   };
 
+  if(typeof google =='undefined') {
+
+    $('#google-map-error-panel').html('<h2>Sorry, Google Maps could not be loaded</h2>');
+    console.log('undefined!');
+    return;
+  }
+
   var map = new google.maps.Map(document.getElementById("mapDiv"), mapOptions);
+
 
 
   /**
@@ -654,6 +803,7 @@
     console.log(self.currentCity);
 
     var $foursquareElem = $('#places-list');
+    var $foursquareErrorPanel= $('#foursquare-error-panel');
     //$foursquareElem.text("");
 
     /**
@@ -688,7 +838,8 @@
 
       }).error(function (e) {
 
-        $foursquareElem.text("Sorry, Foursquare articles could not be loaded");
+        //$foursquareElem.text("Sorry, Foursquare articles could not be loaded");
+        $foursquareErrorPanel.html('<h2>Sorry, Foursquare articles could not be loaded</h2>');
 
       });
 
@@ -698,7 +849,7 @@
 
 
 
-      //Callback function
+    //Callback function
     getDataFoursquare(function (placesData) {
 
       var placesList = placesData;//All the Foursquare data
