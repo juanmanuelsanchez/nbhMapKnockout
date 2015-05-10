@@ -502,7 +502,14 @@
         //markersList=[];
         pinPoster(newList);
 
-        //foursquareHeader.innerHTML="Foursquare recommended places(hide and/or populate with markers & click to choose!)"
+        if(hideButton.style.display=='none' && showButton.style.display=='none') {
+
+          hideButton.style.display="inline";
+          hideButton.style.webkitAnimationName='fadeIn';
+          hideButton.style.webkitAnimationDuration='0.8s';
+        }
+
+
       },
 
       /**
@@ -682,6 +689,7 @@
       hideButton.style.webkitAnimationName='fadeOut';
       hideButton.style.webkitAnimationDuration='1s';
 
+
     }, false);
 
     /**
@@ -717,13 +725,11 @@
       placesList.style.display="block";
       placesList.style.webkitAnimationName='fadeIn';
       placesList.style.webkitAnimationDuration='1s';
-      foursquareHeader.innerHTML="Foursquare recommended places(choose!):";
+      //foursquareHeader.innerHTML="Foursquare recommended places(choose!):";
       inputBox.value=" ";
       markersList.splice(7);
       infoWindowsList.splice(7);
       setAllMap(map);
-
-
 
     }
 
