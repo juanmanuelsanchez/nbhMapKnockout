@@ -268,15 +268,15 @@
   var Place = function (data) {
 
 
-    var self = this;
-    self.name = ko.observable(data.name);
-    self.address = ko.observable(data.address);
-    self.city = ko.observable(data.city);
-    self.country = ko.observable(data.country);
-    self.location = ko.observable(data.location);
+    var self= this;
+    self.name= ko.observable(data.name);
+    self.address= ko.observable(data.address);
+    self.city= ko.observable(data.city);
+    self.country= ko.observable(data.country);
+    self.location= ko.observable(data.location);
     self.rating= ko.observable(data.rating);
 
-    self.listView = ko.pureComputed(function () {//It's better than ko.computed for calculate and return a value
+    self.listView= ko.pureComputed(function () {//It's better than ko.computed for calculate and return a value
       return self.name() + "    " + self.rating();
     });
 
@@ -294,6 +294,7 @@
     console.log(markersList);
 
     var infoWindowsList=octopus.getInfoWindows();
+    console.log(infoWindowsList);
 
 
     var showButton= document.getElementById("show");
@@ -327,8 +328,8 @@
         //infoWindowsList=[];
         //markersList = octopus.getMarkers();
         //infoWindowsList = octopus.getInfoWindows();
-        var markersLength = markersList.length;
-        var infoWindowsLength = infoWindowsList.length;
+        var markersLength= markersList.length;
+        var infoWindowsLength= infoWindowsList.length;
         //console.log(clickedListItem.name());
         //console.log(clickedListItem.address());
         console.log(markersList);
@@ -336,8 +337,8 @@
 
         for (i, j; i < markersLength, j < infoWindowsLength; i++, j++) {
 
-          var marker = markersList[j];
-          var info = infoWindowsList[i];
+          var marker= markersList[j];
+          var info= infoWindowsList[i];
           //marker.setAnimation(null);
           //info.close(map,marker);
           if (clickedListItem.name() == info.content && clickedListItem.name() === marker.title) {
@@ -345,8 +346,8 @@
             if (marker.getAnimation() != null) {
 
               for (h, w; h < markersLength, w < infoWindowsLength; h++, w++) {
-                var pin = markersList[h];
-                var infowindow = infoWindowsList[w];
+                var pin= markersList[h];
+                var infowindow= infoWindowsList[w];
 
                 pin.setAnimation(null);
                 infowindow.close(map, marker);
@@ -355,11 +356,11 @@
             } else {
 
               for (h, w; h < markersLength, w < infoWindowsLength; h++, w++) {
-                var pin = markersList[h];
-                var infowindow = infoWindowsList[w];
+                var pin2= markersList[h];
+                var infowindow2= infoWindowsList[w];
 
-                pin.setAnimation(null);
-                infowindow.close(map, marker);
+                pin2.setAnimation(null);
+                infowindow2.close(map, marker);
                 marker.setAnimation(google.maps.Animation.BOUNCE);
                 info.open(map, marker);
               }
@@ -374,42 +375,43 @@
         var i = 0;
         var h = 0;
         var w = 0;
-        markersList.splice(7);//comprueba qué pasa si se elimina
-        var markersLength = markersList.length;
-        var infoWindowsLength = infoWindowsList.length;
+        markersList.splice(7);
+        infoWindowsList.splice(7);
+        var markersLength2= markersList.length;
+        var infoWindowsLength2= infoWindowsList.length;
         //console.log(clickedListItem.name());
         //console.log(clickedListItem.address());
-        console.log(markersList);
-        console.log(infoWindowsList);
+        //console.log(markersList);
+        //console.log(infoWindowsList);
 
-        for (i, j; i < markersLength, j < infoWindowsLength; i++, j++) {
+        for (i, j; i < markersLength2, j < infoWindowsLength2; i++, j++) {
 
-          var marker = markersList[j];
-          var info = infoWindowsList[i];
+          var marker2= markersList[j];
+          var info2= infoWindowsList[i];
           //marker.setAnimation(null);
           //info.close(map,marker);
-          if (clickedListItem.name() == info.content && clickedListItem.name() === marker.title) {
+          if (clickedListItem.name() == info2.content && clickedListItem.name() === marker2.title) {
 
-            if (marker.getAnimation() != null) {
+            if (marker2.getAnimation() != null) {
 
-              for (h, w; h < markersLength, w < infoWindowsLength; h++, w++) {
-                var pin = markersList[h];
-                var infowindow = infoWindowsList[w];
+              for (h, w; h < markersLength2, w < infoWindowsLength2; h++, w++) {
+                var pin3= markersList[h];
+                var infowindow3= infoWindowsList[w];
 
-                pin.setAnimation(null);
-                infowindow.close(map, marker);
+                pin3.setAnimation(null);
+                infowindow3.close(map, marker2);
               }
 
             } else {
 
-              for (h, w; h < markersLength, w < infoWindowsLength; h++, w++) {
-                var pin = markersList[h];
-                var infowindow = infoWindowsList[w];
+              for (h, w; h < markersLength2, w < infoWindowsLength2; h++, w++) {
+                var pin4 = markersList[h];
+                var infowindow4 = infoWindowsList[w];
 
-                pin.setAnimation(null);
-                infowindow.close(map, marker);
-                marker.setAnimation(google.maps.Animation.BOUNCE);
-                info.open(map, marker);
+                pin4.setAnimation(null);
+                infowindow4.close(map, marker2);
+                marker2.setAnimation(google.maps.Animation.BOUNCE);
+                info2.open(map, marker2);
               }
 
 
@@ -551,37 +553,48 @@
 
 
     function createMapMarker(placeData) {
-      ;
-      //console.log(placeData);
-      var lat = placeData.geometry.location.lat();
-      var lon = placeData.geometry.location.lng();
-      var name = placeData.name;
+
+      console.log(placeData);
+      var lat= placeData.geometry.location.lat();
+      var lon= placeData.geometry.location.lng();
+      var name= placeData.name;
       var address=placeData.formatted_address;
-      var location=name + ', ' + address;
-      var bounds = window.mapBounds;
+      var placeInfoWindow= setInfoWindow(placeData);
 
+      var bounds= window.mapBounds;
 
+     function setInfoWindow(placeData) {
+       var contentString = '<div id="content">' + '<h3 id="firstHeading" class="firstHeading">'+ placeData.formatted_address + '</h3>' + '</div>';
+       return contentString;
+     }
 
+     //console.log(address);
 
-      var marker = new google.maps.Marker({
+      var marker= new google.maps.Marker({
         map: map,
         position: placeData.geometry.location,
-        title: name
+        title:name
       });
 
       octopus.setMarkers(marker);
 
 
-      var infoWindow = new google.maps.InfoWindow({
-        content: name
+      var infoWindow= new google.maps.InfoWindow({
+        content:name
+
       });
+
+
+
 
       octopus.setInfoWindows(infoWindow);
 
 
       google.maps.event.addListener(marker, 'click', function () {
 
+        //infoWindow.setContent(placeInfoWindow);
         infoWindow.open(map, marker);
+
 
       });
 
@@ -859,7 +872,7 @@
     getDataFoursquare(function (placesData) {
 
       var placesList = placesData;//All the Foursquare data
-      //console.log(placesList);
+      console.log(placesList);
       var j = 0;
       var i = 0;
       var h = 0;
