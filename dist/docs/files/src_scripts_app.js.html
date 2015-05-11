@@ -81,9 +81,26 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
+/**
+ * Created by juanmanuelsanchez on 10/5/15.
+ */
+/**
+ * Created by juanmanuelsanchez on 10/5/15.
+ */
+/**
+ * Created by juanmanuelsanchez on 9/5/15.
+ */
+/**
+ * Created by juanmanuelsanchez on 7/5/15.
+ */
+/**
+ * Created by juanmanuelsanchez on 6/5/15.
+ */
 /*jshint devel:true, unused:false*/
 /*globals Model, octopus*/
+
 (function () {
+
 
 
   var Model = {
@@ -222,6 +239,7 @@
     setFilteredNames: function (name) {
 
       Model[&quot;filteredNames&quot;] = name;
+
     },
 
     /**
@@ -311,6 +329,16 @@
     getPinPosterLocations: function () {
 
       return Model.pinPosterLocations;
+    },
+
+    clearMarkers: function () {
+
+      Model.markers=[];
+
+    },
+    clearInfoWindows: function () {
+
+      Model.infoWindows=[];
     }
 
   };
@@ -328,34 +356,41 @@
   var Place = function (data) {
 
 
-    var self = this;
-    self.name = ko.observable(data.name);
-    self.address = ko.observable(data.address);
-    self.city = ko.observable(data.city);
-    self.country = ko.observable(data.country);
-    self.location = ko.observable(data.location);
+    var self= this;
+    self.name= ko.observable(data.name);
+    self.address= ko.observable(data.address);
+    self.city= ko.observable(data.city);
+    self.country= ko.observable(data.country);
+    self.location= ko.observable(data.location);
     self.rating= ko.observable(data.rating);
 
-    self.listView = ko.pureComputed(function () {//It&#x27;s better than ko.computed for calculate and return a value
+    self.listView= ko.pureComputed(function () {//It&#x27;s better than ko.computed for calculate and return a value
       return self.name() + &quot;    &quot; + self.rating();
     });
 
 
-
+    console.log(self.address());
 
 
     octopus.setPinPosterLocations(self.location());
     var locationsList= octopus.getPinPosterLocations();
     var locations= [];
     locations.push(self.location());
-    var markers= octopus.getMarkers();
-    var infos= octopus.getInfoWindows();
+    console.log(locations);
+
+    var markersList=octopus.getMarkers();
+    console.log(markersList);
+
+    var infoWindowsList=octopus.getInfoWindows();
+    console.log(infoWindowsList);
+
 
     var showButton= document.getElementById(&quot;show&quot;);
     var hideButton= document.getElementById(&quot;hide&quot;);
     var placesList= document.getElementById(&quot;places-list&quot;);
     var foursquareHeader= document.getElementById(&quot;foursquare-header&quot;);
     var inputBox= document.getElementById(&quot;autocomplete&quot;);
+
 
     showButton.style.display=&quot;none&quot;;
 
@@ -371,34 +406,110 @@
      */
 
     this.setCurrentPlace = function (clickedListItem) {
-      var j = 0;
-      var i = 0;
-      var markersList = octopus.getMarkers();
-      var infoWindowsList = octopus.getInfoWindows();
-      var markersLength = markersList.length;
-      var infoWindowsLength = infoWindowsList.length;
-      //console.log(clickedListItem.name());
-      //console.log(clickedListItem.address());
-      //console.log(markersList);
-      //console.log(infoWindowsList);
 
-      for (i, j; i &lt; markersLength, j &lt; infoWindowsLength; i++, j++) {
+      if (markersList.length&lt;7) {
+        var j = 0;
+        var i = 0;
+        var h = 0;
+        var w = 0;
 
-        var marker = markersList[j];
-        var info = infoWindowsList[i];
-        if (clickedListItem.name() == info.content &amp;&amp; clickedListItem.name() === marker.title) {
+        //infoWindowsList=[];
+        //markersList = octopus.getMarkers();
+        //infoWindowsList = octopus.getInfoWindows();
+        var markersLength= markersList.length;
+        var infoWindowsLength= infoWindowsList.length;
+        //console.log(clickedListItem.name());
+        //console.log(clickedListItem.address());
+        console.log(markersList);
+        console.log(infoWindowsList);
 
-          if (marker.getAnimation() != null) {
+        for (i, j; i &lt; markersLength, j &lt; infoWindowsLength; i++, j++) {
 
-            marker.setAnimation(null);
-            info.close(map, marker);
-          } else {
+          var marker= markersList[j];
+          var info= infoWindowsList[i];
+          //marker.setAnimation(null);
+          //info.close(map,marker);
+          if (clickedListItem.address() == info.content &amp;&amp; clickedListItem.address() === marker.title) {
 
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-            info.open(map, marker);
+            if (marker.getAnimation() != null) {
+
+              for (h, w; h &lt; markersLength, w &lt; infoWindowsLength; h++, w++) {
+                var pin= markersList[h];
+                var infowindow= infoWindowsList[w];
+
+                pin.setAnimation(null);
+                infowindow.close(map, marker);
+              }
+
+            } else {
+
+              for (h, w; h &lt; markersLength, w &lt; infoWindowsLength; h++, w++) {
+                var pin2= markersList[h];
+                var infowindow2= infoWindowsList[w];
+
+                pin2.setAnimation(null);
+                infowindow2.close(map, marker);
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+                info.open(map, marker);
+              }
+
+
+            }
           }
         }
+      }else{
+
+        var j = 0;
+        var i = 0;
+        var h = 0;
+        var w = 0;
+        markersList.splice(7);
+        infoWindowsList.splice(7);
+        var markersLength2= markersList.length;
+        var infoWindowsLength2= infoWindowsList.length;
+        //console.log(clickedListItem.name());
+        //console.log(clickedListItem.address());
+        //console.log(markersList);
+        //console.log(infoWindowsList);
+
+        for (i, j; i &lt; markersLength2, j &lt; infoWindowsLength2; i++, j++) {
+
+          var marker2= markersList[j];
+          var info2= infoWindowsList[i];
+          //marker.setAnimation(null);
+          //info.close(map,marker);
+          if (clickedListItem.address() == info2.content &amp;&amp; clickedListItem.address() === marker2.title) {
+
+            if (marker2.getAnimation() != null) {
+
+              for (h, w; h &lt; markersLength2, w &lt; infoWindowsLength2; h++, w++) {
+                var pin3= markersList[h];
+                var infowindow3= infoWindowsList[w];
+
+                pin3.setAnimation(null);
+                infowindow3.close(map, marker2);
+              }
+
+            } else {
+
+              for (h, w; h &lt; markersLength2, w &lt; infoWindowsLength2; h++, w++) {
+                var pin4 = markersList[h];
+                var infowindow4 = infoWindowsList[w];
+
+                pin4.setAnimation(null);
+                infowindow4.close(map, marker2);
+                marker2.setAnimation(google.maps.Animation.BOUNCE);
+                info2.open(map, marker2);
+              }
+
+
+            }
+          }
+        }
+
+
       }
+
 
     };
 
@@ -444,9 +555,10 @@
         placesList.style.display=&quot;none&quot;;
         placesList.style.webkitAnimationName=&#x27;fadeOut&#x27;;
         placesList.style.webkitAnimationDuration=&#x27;1s&#x27;;
-        showButton.style.display=&quot;inline&quot;;
-        showButton.style.webkitAnimationName=&#x27;fadeIn&#x27;;
+        showButton.style.display=&quot;none&quot;;
+        showButton.style.webkitAnimationName=&#x27;fadeOut&#x27;;
         showButton.style.webkitAnimationDuration=&#x27;1s&#x27;;
+
 
         var listSuggestions=[];
         for(suggestion in suggestions) {
@@ -457,6 +569,7 @@
         }
         clearMarkers();
         pinPoster(listSuggestions);
+
 
       },
 
@@ -474,10 +587,19 @@
         var newList=[];
         var newLocation=suggestion.value;
         newList.push(newLocation);
-        //console.log(newList);
+        console.log(newList);
         clearMarkers();
+        //markersList=[];
         pinPoster(newList);
-        foursquareHeader.innerHTML=&quot;Foursquare recommended places(hide and/or populate with markers &amp; click to choose!)&quot;
+
+        if(hideButton.style.display==&#x27;none&#x27; &amp;&amp; showButton.style.display==&#x27;none&#x27;) {
+
+          hideButton.style.display=&quot;inline&quot;;
+          hideButton.style.webkitAnimationName=&#x27;fadeIn&#x27;;
+          hideButton.style.webkitAnimationDuration=&#x27;0.8s&#x27;;
+        }
+
+
       },
 
       /**
@@ -516,39 +638,55 @@
      * which is going to be rendered on Google Maps
      */
 
+
+
     function createMapMarker(placeData) {
 
-      //console.log(placeData);
-      var lat = placeData.geometry.location.lat();
-      var lon = placeData.geometry.location.lng();
-      var name = placeData.name;
+      console.log(placeData);
+      var lat= placeData.geometry.location.lat();
+      var lon= placeData.geometry.location.lng();
+      var name= placeData.name;
       var address=placeData.formatted_address;
-      var location=name + &#x27;, &#x27; + address;
-      var bounds = window.mapBounds;
+      var placeInfoWindow= setInfoWindow(placeData);
 
+      var bounds= window.mapBounds;
 
+      function setInfoWindow(placeData) {
+        var contentString = &#x27;&lt;div id=&quot;content&quot;&gt;&#x27; + &#x27;&lt;h3 id=&quot;firstHeading&quot; class=&quot;firstHeading&quot;&gt;&#x27;+ placeData.formatted_address + &#x27;&lt;/h3&gt;&#x27; + &#x27;&lt;/div&gt;&#x27;;
+        return contentString;
+      }
 
-      var marker = new google.maps.Marker({
+      //console.log(address);
+
+      var marker= new google.maps.Marker({
         map: map,
         position: placeData.geometry.location,
-        title: name
+        title:address
       });
 
       octopus.setMarkers(marker);
 
 
-      var infoWindow = new google.maps.InfoWindow({
-        content: name
+      var infoWindow= new google.maps.InfoWindow({
+        content:address
+
       });
+
+
+
 
       octopus.setInfoWindows(infoWindow);
 
 
       google.maps.event.addListener(marker, &#x27;click&#x27;, function () {
 
+        //infoWindow.setContent(placeInfoWindow);
         infoWindow.open(map, marker);
 
+
       });
+
+
 
       bounds.extend(new google.maps.LatLng(lat, lon));
 
@@ -568,11 +706,19 @@
 
     function callback(results, status) {
 
+      var $googleMapsErrorPanel= $(&#x27;#google-map-error-panel&#x27;);
+
+      if(status != google.maps.places.PlacesServiceStatus.OK) {
+        $googleMapsErrorPanel.html(&#x27;&lt;h2&gt;Sorry, Google Maps could not be loaded&lt;/h2&gt;&#x27;);
+        return;
+      }
+
       if (status == google.maps.places.PlacesServiceStatus.OK) {
 
         createMapMarker(results[0]);
 
       }
+
     }
 
     /**
@@ -585,8 +731,15 @@
 
     function pinPoster(locations) {
 
+      if(typeof google.maps.places ==&#x27;undefined&#x27;) {
+
+        $(&#x27;#google-map-error-panel&#x27;).html(&#x27;&lt;h2&gt;Sorry, Google Maps could not be loaded&lt;/h2&gt;&#x27;);
+        console.log(&#x27;undefined!&#x27;);
+        return;
+      }
 
       var service = new google.maps.places.PlacesService(map);
+
 
       for (place in locations) {
 
@@ -597,7 +750,9 @@
         };
 
         service.textSearch(request, callback);
+
       }
+
     }
 
     /**
@@ -609,6 +764,13 @@
     showButton.addEventListener(&#x27;click&#x27;, function () {
 
       showMarkers();
+      showButton.style.display=&quot;none&quot;;
+      showButton.style.webkitAnimationName=&#x27;fadeOut&#x27;;
+      showButton.style.webkitAnimationDuration=&#x27;1s&#x27;;
+      hideButton.style.display=&quot;inline&quot;;
+      hideButton.style.webkitAnimationName=&#x27;fadeIn&#x27;;
+      hideButton.style.webkitAnimationDuration=&#x27;0.8s&#x27;;
+
 
     }, false);
 
@@ -621,6 +783,13 @@
     hideButton.addEventListener(&#x27;click&#x27;, function () {
 
       clearMarkers();
+      showButton.style.display=&quot;inline&quot;;
+      showButton.style.webkitAnimationName=&#x27;fadeIn&#x27;;
+      showButton.style.webkitAnimationDuration=&#x27;0.8s&#x27;;
+      hideButton.style.display=&quot;none&quot;;
+      hideButton.style.webkitAnimationName=&#x27;fadeOut&#x27;;
+      hideButton.style.webkitAnimationDuration=&#x27;1s&#x27;;
+
 
     }, false);
 
@@ -634,11 +803,14 @@
     function setAllMap(map) {
 
       var j = 0;
-      var length = markers.length;
+
+
+      var length = markersList.length;
+      console.log(length);
 
       for (j; j &lt; length; j++) {
 
-        markers[j].setMap(map);
+        markersList[j].setMap(map);
       }
 
     }
@@ -654,12 +826,10 @@
       placesList.style.display=&quot;block&quot;;
       placesList.style.webkitAnimationName=&#x27;fadeIn&#x27;;
       placesList.style.webkitAnimationDuration=&#x27;1s&#x27;;
-      showButton.style.display=&quot;none&quot;;
-      showButton.style.webkitAnimationName=&#x27;fadeOut&#x27;;
-      showButton.style.webkitAnimationDuration=&#x27;1s&#x27;;
-      foursquareHeader.innerHTML=&quot;Foursquare recommended places(choose!):&quot;;
+      //foursquareHeader.innerHTML=&quot;Foursquare recommended places(choose!):&quot;;
       inputBox.value=&quot; &quot;;
-
+      markersList.splice(7);
+      infoWindowsList.splice(7);
       setAllMap(map);
 
     }
@@ -674,21 +844,16 @@
 
       setAllMap(null);
 
-      if(showButton.style.display==&quot;none&quot;) {
 
-        showButton.style.display=&quot;inline&quot;;
-        showButton.style.webkitAnimationName=&#x27;fadeIn&#x27;;
-        showButton.style.webkitAnimationDuration=&#x27;0.8s&#x27;;
-
-
-      }
 
     }
 
 
     window.mapBounds = new google.maps.LatLngBounds();
 
+
     pinPoster(locations);
+
 
 
 
@@ -711,7 +876,15 @@
     disableDefaultUI: false
   };
 
+  if(typeof google ==&#x27;undefined&#x27;) {
+
+    $(&#x27;#google-map-error-panel&#x27;).html(&#x27;&lt;h2&gt;Sorry, Google Maps could not be loaded&lt;/h2&gt;&#x27;);
+    console.log(&#x27;undefined!&#x27;);
+    return;
+  }
+
   var map = new google.maps.Map(document.getElementById(&quot;mapDiv&quot;), mapOptions);
+
 
 
   /**
@@ -737,6 +910,7 @@
     console.log(self.currentCity);
 
     var $foursquareElem = $(&#x27;#places-list&#x27;);
+    var $foursquareErrorPanel= $(&#x27;#foursquare-error-panel&#x27;);
     //$foursquareElem.text(&quot;&quot;);
 
     /**
@@ -771,7 +945,8 @@
 
       }).error(function (e) {
 
-        $foursquareElem.text(&quot;Sorry, Foursquare articles could not be loaded&quot;);
+        //$foursquareElem.text(&quot;Sorry, Foursquare articles could not be loaded&quot;);
+        $foursquareErrorPanel.html(&#x27;&lt;h2&gt;Sorry, Foursquare articles could not be loaded&lt;/h2&gt;&#x27;);
 
       });
 
@@ -781,18 +956,19 @@
 
 
 
-      //Callback function
+    //Callback function
     getDataFoursquare(function (placesData) {
 
       var placesList = placesData;//All the Foursquare data
-      //console.log(placesList);
+      console.log(placesList);
       var j = 0;
       var i = 0;
       var h = 0;
+      var z=0;
       var length = placesList.length;
       var filteredList = [];//Foursquare filtered data
       var filteredNames = [];//Foursquare filtered place&#x27;s modified names to fit Google Map&#x27;s marker&#x27;s names
-
+      var filteredPlaces= [];
 
       for (j; j &lt; length; j++) {
 
@@ -860,6 +1036,45 @@
           //console.log(&quot;Wasabi Bilbao Restaurante Japones Eureka!&quot;);
           newName = locationItemName.replace(&quot;Wasabi Bilbao Restaurante Japones&quot;, &quot;Restaurante Wasabi Bilbao&quot;);
           locationItem.name = newName;
+        }
+      }
+
+
+      for (z; z &lt; filteredNames.length; z++) {
+
+        var locationItem = filteredNames[z];
+        var locationItemAddress = locationItem.address;
+        var newAddress;
+
+        if (locationItemAddress === &quot;Lersundi Kalea, 3&quot;) {
+          console.log(&quot; Wasabi Eureka!&quot;);
+          newAddress = locationItemAddress.replace(&quot;Lersundi Kalea, 3&quot;, &quot;Lersundi Kalea, 3, 48009 Bilbao, Bizkaia, Spain&quot;);
+          locationItem.address = newAddress;
+        } else if (locationItemAddress === &quot;Arbolantxa 2&quot;) {
+          console.log(&quot; Sakura Eureka!&quot;);
+          newAddress = locationItemAddress.replace(&quot;Arbolantxa 2&quot;, &quot;Arbolantxa Kalea, 2, 48001 Bilbao, Bizkaia, Spain&quot;);
+          locationItem.address = newAddress;
+        } else if (locationItemAddress === &quot;Ercilla 8&quot;) {
+          console.log(&quot; Kuma Eureka!&quot;);
+          newAddress = locationItemAddress.replace(&quot;Ercilla 8&quot;, &quot;Ercilla Kalea, 8, 48009 Bilbao, Bizkaia, Spain&quot;);
+          locationItem.address = newAddress;
+        } else if (locationItemAddress === &quot;C/ Licenciado Poza, 39&quot;) {
+          console.log(&quot; SUMO Pozas Eureka!&quot;);
+          newAddress = locationItemAddress.replace(&quot;C/ Licenciado Poza, 39&quot;, &quot;Poza Lizentziatuaren Kalea, 39, 48011 Bilbao, Bizkaia, Spain&quot;);
+          locationItem.address = newAddress;
+        } else if (locationItemAddress === &quot;Ledesma, 30&quot;) {
+          console.log(&quot; Asia Chic Eureka!&quot;);
+          newAddress = locationItemAddress.replace(&quot;Ledesma, 30&quot;, &quot;Ledesma Musikariaren Kalea, 30, 48001 Bilbao, Bizkaia, Spain&quot;);
+          locationItem.address = newAddress;
+        } else if (locationItemAddress === &quot;Ibáñez de Bilbao, 11&quot;) {
+          console.log(&quot; Mao Eureka!&quot;);
+          newAddress = locationItemAddress.replace(&quot;Ibáñez de Bilbao, 11&quot;, &quot;Ibáñez de Bilbao Kalea, 11, 48009 Bilbao, Bizkaia, Spain&quot;);
+          locationItem.address = newAddress;
+        } else if (locationItemAddress === &quot;Licenciado Poza 48&quot;) {
+          console.log(&quot; Sushi Artist Eureka!&quot;);
+          newAddress = locationItemAddress.replace(&quot;Licenciado Poza 48&quot;, &quot;Licenciado Poza 48, 48013 Bilbao, Biscay, Spain&quot;);
+          locationItem.address = newAddress;
+
         }
       }
 
