@@ -10,7 +10,13 @@
   <title>nbhMap</title>
   <link href="css/boilerplate.css" rel="stylesheet" type="text/css">
   <link href="css/style.css" rel="stylesheet" type="text/css">
+
+  <!--<link href="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css" rel="stylesheet" type="text/css">-->
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <!--<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>-->
+  <!--<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
   <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+  <!--<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>-->
 
   <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -22,25 +28,31 @@
   <h2 class="title fluid">HOW ABOUT SOME SUSHI AT BILBAO?</h2>
   <h4 class="title fluid">SEARCH (input suggestion "a"):</h4>
   <div id="search-bar" class="fluid">
-    <input type="text" id="autocomplete" class="fluid" onfocus="{this.value ='';}">
+    <input type="text" id="autocomplete" class="fluid" onfocus="{this.value ='';}" data-enhanced="true" data-corners="false">
   </div>
-  <div class="foursquare-container fluid">
-    <h3 id="foursquare-header" class="title fluid">Foursquare recommended places(choose!):</h3>
-    <ul id="places-list" class="fluidList" data-bind="foreach: places">
+  <div id="foursquare-error-panel"></div>
+  <div id="google-map-error-panel"></div>
+  <div class="foursquare-container fluid" data-role="collapsible" data-collapsed="true" data-theme="b">
+    <h4 id="foursquare-header" class="title fluid">Foursquare recommendations(choose!):</h4>
+    <hr class="fluid">
+    <ul id="places-list" class="fluidList" data-bind="foreach: places" data-role="listview">
       <li id="list-item" class="fluid" data-bind="text: name, click: setCurrentPlace"></li>
     </ul>
   </div>
+
   <div id="mapDiv" class="fluid"></div>
-  <div id="panel">
-    <button id="hide">Hide markers</button>
+  <div id="panel" class="fluid">
     <button id="show">Populate & Choose</button>
+    <button id="hide">Hide markers</button>
+
   </div>
 </div>
 
 <script src="libs/jquery.min.js"></script>
+<script src="libs/http_ajax.googleapis.com_ajax_libs_jquerymobile_1.4.5_jquery.mobile.js"></script>
 <script src="libs/http_html5shiv.googlecode.com_svn_trunk_html5.js"></script>
 <script src="libs/jquery.autocomplete.min.js"></script>
 <script src="libs/knockout.js"></script>
-<script src="scripts/main.min.js"></script>
+<script src="scripts/main.js"></script>
 </body>
 </html>

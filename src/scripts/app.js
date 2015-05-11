@@ -965,31 +965,31 @@
 
         if (locationItemAddress === "Lersundi Kalea, 3") {
           console.log(" Wasabi Eureka!");
-          newAddress = locationItemAddress.replace("Lersundi Kalea, 3", "Lersundi Kalea, 3, 48009 Bilbao, Bizkaia, Spain");
+          newAddress = locationItemAddress.replace("Lersundi Kalea, 3", "Lersundi Kalea, 3, 48009 Bilbao, Bizkaia, España");
           locationItem.address = newAddress;
         } else if (locationItemAddress === "Arbolantxa 2") {
           console.log(" Sakura Eureka!");
-          newAddress = locationItemAddress.replace("Arbolantxa 2", "Arbolantxa Kalea, 2, 48001 Bilbao, Bizkaia, Spain");
+          newAddress = locationItemAddress.replace("Arbolantxa 2", "Arbolantxa Kalea, 2, 48001 Bilbao, Bizkaia, España");
           locationItem.address = newAddress;
         } else if (locationItemAddress === "Ercilla 8") {
           console.log(" Kuma Eureka!");
-          newAddress = locationItemAddress.replace("Ercilla 8", "Ercilla Kalea, 8, 48009 Bilbao, Bizkaia, Spain");
+          newAddress = locationItemAddress.replace("Ercilla 8", "Ercilla Kalea, 8, 48009 Bilbao, Bizkaia, España");
           locationItem.address = newAddress;
         } else if (locationItemAddress === "C/ Licenciado Poza, 39") {
           console.log(" SUMO Pozas Eureka!");
-          newAddress = locationItemAddress.replace("C/ Licenciado Poza, 39", "Poza Lizentziatuaren Kalea, 39, 48011 Bilbao, Bizkaia, Spain");
+          newAddress = locationItemAddress.replace("C/ Licenciado Poza, 39", "Poza Lizentziatuaren Kalea, 39, 48011 Bilbao, Bizkaia, España");
           locationItem.address = newAddress;
         } else if (locationItemAddress === "Ledesma, 30") {
           console.log(" Asia Chic Eureka!");
-          newAddress = locationItemAddress.replace("Ledesma, 30", "Ledesma Musikariaren Kalea, 30, 48001 Bilbao, Bizkaia, Spain");
+          newAddress = locationItemAddress.replace("Ledesma, 30", "Ledesma Musikariaren Kalea, 30, 48001 Bilbao, Bizkaia, España");
           locationItem.address = newAddress;
         } else if (locationItemAddress === "Ibáñez de Bilbao, 11") {
           console.log(" Mao Eureka!");
-          newAddress = locationItemAddress.replace("Ibáñez de Bilbao, 11", "Ibáñez de Bilbao Kalea, 11, 48009 Bilbao, Bizkaia, Spain");
+          newAddress = locationItemAddress.replace("Ibáñez de Bilbao, 11", "Ibáñez de Bilbao Kalea, 11, 48009 Bilbao, Bizkaia, España");
           locationItem.address = newAddress;
         } else if (locationItemAddress === "Licenciado Poza 48") {
           console.log(" Sushi Artist Eureka!");
-          newAddress = locationItemAddress.replace("Licenciado Poza 48", "Licenciado Poza 48, 48013 Bilbao, Biscay, Spain");
+          newAddress = locationItemAddress.replace("Licenciado Poza 48", "Licenciado Poza 48, 48013 Bilbao, Biscay, España");
           locationItem.address = newAddress;
 
         }
