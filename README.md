@@ -9,11 +9,11 @@ taken from Foursquare API, following the MVVM design pattern as proposed by Knoc
   ---------------------------------
 Click the index.html file to run the program. A map will show you some markers with Sushi
 restaurant suggestions selected from Foursquare. There's a listview header above the map
-with a + sign on it. When clicked it'll display the listview with the names of the restaurants
-suggestions that appear as markers on the map. These names are clickable and when clicked the
+with a + sign on it. When clicked, it'll display the listview with the names of the restaurant
+suggestions that appear as markers on the map. These names are clickable and, when clicked, the
 map will show additional information about the clicked item as an info window above the marker.
-Additionally, there a search bar on the top where you can filter the suggested items to be 
-shown individually on the map. 
+Additionally, there's a search bar on the top, where there's a possibility to filter the suggested
+items to be shown individually on the map. 
 
 
 ## Packages
@@ -33,7 +33,7 @@ shown individually on the map.
 *  JQuery Autocomplete (credits to Tomas Kirda) for the search bar.
 *  Boilerplate for responsive design.
 *  Grunt and Grunt plugins: connect, clean, concat, copy, jasmine, jasmine-istanbul, jshint,
-   uglify, watch, yuidoc (credits to Den Odell: _Pro JavaScript Development).
+   uglify, watch, yuidoc (credits to Den Odell: _Pro JavaScript Development_).
    
 ## Acknowledgements
   -----------------
